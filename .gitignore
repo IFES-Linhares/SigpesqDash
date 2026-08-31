@@ -1,0 +1,13 @@
+# Dados sensíveis (credenciais, screenshots de login, debug)
+dados/
+__pycache__/
+*.pyc
+.env
+
+# Arquivos internos não públicos
+dashboard/
+publica/
+
+# Python
+*.egg-info/
+dist/

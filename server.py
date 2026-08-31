@@ -9,10 +9,14 @@ from getpass import getpass
 from pathlib import Path
 from urllib.parse import urlparse
 
+import argparse
+
 PORT = int(os.environ.get("SIGPESQ_PORT", "8080"))
+HOST_PULL = os.environ.get("SIGPESQ_HOST", "127.0.0.1")  # Local só pelo diretor
 PASTA_BASE = Path(__file__).parent
 PASTA_DADOS = PASTA_BASE / "dados"
 PASTA_DASHBOARD = PASTA_BASE / "dashboard"
+PUBLICA = PASTA_BASE / "docs"  # Pasta pública para GitHub Pages
 ULTIMA_ATUALIZACAO = [0]
 LOCK_ATUALIZACAO = threading.Lock()
 INTERVALO_MINIMO = 3600
@@ -29,7 +33,7 @@ def executar_bot(cpf, senha):
             env=env,
             capture_output=True,
             text=True,
-            timeout=120,
+            timeout=600,   # Com 121 projetos coletados, disponível o suficiente
         )
         print(f"[BOT] stdout: {resultado.stdout}")
         if resultado.stderr:
@@ -170,18 +174,26 @@ def pedir_credenciais():
 
 
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--publico", action="store_true",
+                        help="Permite acesso da rede externa (default: só localhost)")
+    args = parser.parse_args()
+
+    host = "0.0.0.0" if args.publico else HOST_PULL
+
     cpf_config, senha_config = pedir_credenciais()
 
     os.environ["SIGPESQ_CPF"] = cpf_config
     os.environ["SIGPESQ_SENHA"] = senha_config
 
     print()
-    print(f"Servidor rodando em http://localhost:{PORT}")
-    print(f"Dashboard: http://localhost:{PORT}/")
+    print(f"Servidor rodando em http://{host}:{PORT}")
+    print(f"Dashboard: http://{host}:{PORT}/")
+    print(f"Para rede externa use: python3 server.py --publico")
     print(f"Pressione Ctrl+C para parar")
     print()
 
-    server = http.server.HTTPServer(("0.0.0.0", PORT), Handler)
+    server = http.server.HTTPServer((host, PORT), Handler)
     try:
         server.serve_forever()
     except KeyboardInterrupt:

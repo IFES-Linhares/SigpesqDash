@@ -10,10 +10,16 @@ from pathlib import Path
 from playwright.sync_api import TimeoutError as PWTimeout
 from playwright.sync_api import sync_playwright
 
+# Pasta raiz dos arquivos de dados internos
 PASTA_DADOS = Path(__file__).parent / "dados"
 PASTA_DASHBOARD = Path(__file__).parent / "dashboard"
+
+# Pasta pública (docs/) — usada pelo GitHub Pages (gh-pages ou docs branch)
+PASTA_PUBLICA = Path(__file__).parent / "docs"
+
 PASTA_DADOS.mkdir(exist_ok=True)
 PASTA_DASHBOARD.mkdir(exist_ok=True)
+PASTA_PUBLICA.mkdir(exist_ok=True)
 
 URL_BASE = "https://sigpesq.ifes.edu.br"
 URL_LOGIN = f"{URL_BASE}/Login.aspx"
@@ -22,8 +28,8 @@ URL_DASHBOARD = f"{URL_BASE}/web/Dashboard.aspx"
 # Tela da Diretoria: TODOS os projetos da unidade (não só os coordenados)
 URL_PROJETOS_UNIDADE = f"{URL_BASE}/web/projeto/listaUnidade.aspx"
 
-# Pasta pública para o site estático (GitHub Pages)
-PASTA_PUBLICA = Path(__file__).parent / "publica"
+# Pasta pública para o GitHub Pages (docs/ é o padrão do GitHub Pages)
+PASTA_PUBLICA = Path(__file__).parent / "docs"
 PASTA_PUBLICA.mkdir(exist_ok=True)
 
 # Headless por padrão; defina SIGPESQ_HEADLESS=0 para ver o navegador
