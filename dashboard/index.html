@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIGPESQ Dashboard — IFES Campus Linhares</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        :root {
+            --primary: #1a56db;
+            --primary-hover: #1e429f;
+            --bg-main: #f9fafb;
+            --bg-card: #ffffff;
+            --text-main: #111827;
+            --text-muted: #6b7280;
+            --border: #e5e7eb;
+            --sidebar-bg: #ffffff;
+            --sidebar-text: #374151;
+            --sidebar-active: #eff6ff;
+            --status-active: #10b981;
+            --status-completed: #1a56db;
+            --status-pending: #f59e0b;
+            --status-canceled: #ef4444;
+            --status-planned: #8b5cf6;
+            --transition: all 0.2s ease;
+        }
+
+        [data-theme="dark"] {
+            --bg-main: #111827;
+            --bg-card: #1f2937;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --border: #374151;
+            --sidebar-bg: #111827;
+            --sidebar-text: #d1d5db;
+            --sidebar-active: #374151;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-main);
+            color: var(--text-main);
+            display: flex;
+            min-height: 100vh;
+            transition: background-color 0.3s ease;
+        }
+
+        .sidebar-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.5);
+            z-index: 40;
+        }
+
+        aside {
+            width: 260px;
+            background-color: var(--sidebar-bg);
+            border-right: 1px solid var(--border);
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            height: 100vh;
+            z-index: 50;
+            transition: transform 0.3s ease;
+        }
+
+        .sidebar-header {
+            padding: 24px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-weight: 700;
+            font-size: 1.25rem;
+            color: var(--primary);
+        }
+
+        nav { flex: 1; padding: 12px; }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: var(--sidebar-text);
+            border-radius: 8px;
+            margin-bottom: 4px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: var(--transition);
+        }
+
+        .nav-item:hover { background-color: var(--sidebar-active); }
+
+        .nav-item.active {
+            background-color: var(--sidebar-active);
+            color: var(--primary);
+        }
+
+        main {
+            flex: 1;
+            margin-left: 260px;
+            padding: 32px;
+            max-width: 1600px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 32px;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .header-title h1 { font-size: 1.5rem; font-weight: 700; }
+        .header-title p { color: var(--text-muted); font-size: 0.875rem; }
+
+        .header-actions {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-main);
+            transition: var(--transition);
+            font-size: 0.875rem;
+        }
+
+        .btn:hover { opacity: 0.9; }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            border: none;
+        }
+
+        .btn-primary:hover { background: var(--primary-hover); }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        .kpi-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 20px;
+            margin-bottom: 32px;
+        }
+
+        .kpi-card {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .kpi-card h3 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+        }
+
+        .kpi-card .value { font-size: 1.75rem; font-weight: 700; }
+
+        .charts-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 24px;
+            margin-bottom: 32px;
+        }
+
+        .chart-container {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            height: 400px;
+        }
+
+        .chart-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .table-section {
+            background: var(--bg-card);
+            border-radius: 12px;
+            border: 1px solid var(--border);
+            overflow: hidden;
+            margin-bottom: 32px;
+        }
+
+        .table-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 300px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 10px 16px 10px 40px;
+            border-radius: 8px;
+            border: 1px solid var(--border);
+            background: var(--bg-main);
+            color: var(--text-main);
+        }
+
+        .table-wrapper { overflow-x: auto; }
+
+        .filters-row {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .filter-label {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .filter-label select {
+            padding: 8px 12px;
+            border-radius: 6px;
+            border: 1px solid var(--border);
+            background: var(--bg-card);
+            color: var(--text-main);
+            min-width: 140px;
+            font-size: 0.875rem;
+        }
+
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+
+        th {
+            background: var(--bg-main);
+            padding: 12px 16px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            cursor: pointer;
+            user-select: none;
+        }
+
+        th:hover { color: var(--primary); }
+
+        td {
+            padding: 16px 14px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.875rem;
+        }
+
+        .status-pill {
+            padding: 4px 10px;
+            border-radius: 99px;
+            font-size: 0.75rem;
+            font-weight: 600;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.4; }
+            100% { opacity: 1; }
+        }
+
+        .skeleton {
+            animation: pulse 1.5s infinite ease-in-out;
+            background: var(--border);
+            border-radius: 4px;
+        }
+
+        .activity-feed {
+            background: var(--bg-card);
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border);
+        }
+
+        .activity-item {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .activity-item:last-child { border-bottom: none; }
+
+        .activity-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            flex-shrink: 0;
+        }
+
+        .activity-text { font-size: 0.875rem; }
+        .activity-time { font-size: 0.75rem; color: var(--text-muted); }
+
+        footer {
+            text-align: center;
+            padding: 24px;
+            color: var(--text-muted);
+            font-size: 0.75rem;
+            border-top: 1px solid var(--border);
+            margin-top: 32px;
+        }
+
+        footer a { color: var(--primary); text-decoration: none; }
+
+        @media (max-width: 1024px) {
+            aside { transform: translateX(-100%); }
+            aside.open { transform: translateX(0); }
+            main { margin-left: 0; padding: 16px; }
+            .kpi-grid { grid-template-columns: repeat(2, 1fr); }
+            .charts-grid { grid-template-columns: 1fr; }
+            .sidebar-overlay.open { display: block; }
+            #menuToggle { display: block !important; }
+        }
+
+        @media (max-width: 640px) {
+            .kpi-grid { grid-template-columns: 1fr; }
+            header { flex-direction: column; align-items: flex-start; }
+            .search-box { width: 100%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar-overlay" id="overlay"></div>
+
+    <aside id="sidebar">
+        <div class="sidebar-header">
+            <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <rect width="32" height="32" rx="8" fill="#1A56DB"/>
+                <path d="M10 10H22V13H10V10ZM10 15H22V18H10V15ZM10 20H17V23H10V20Z" fill="white"/>
+            </svg>
+            <span>SIGPESQ</span>
+        </div>
+        <nav>
+            <div class="nav-item active" data-section="dashboard">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                Dashboard
+            </div>
+            <div class="nav-item" data-section="projetos">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"/></svg>
+                Projetos
+            </div>
+            <div class="nav-item" data-section="relatorios">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+                Relatórios
+            </div>
+        </nav>
+    </aside>
+
+    <main>
+        <header>
+            <div class="header-title">
+                <button class="btn" id="menuToggle" style="display: none;">☰</button>
+                <h1>Dashboard Estratégico</h1>
+                <p>Gestão Integrada de Pesquisa — IFES Campus Linhares | <span id="lastUpdate">Carregando...</span></p>
+            </div>
+            <div class="header-actions">
+                <button class="btn" id="themeToggle" title="Alternar Modo Escuro">
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+                </button>
+                <button class="btn" id="btnAtualizar" onclick="atualizarDados()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg>
+                    Atualizar dados
+                </button>
+                <button class="btn" id="exportCsv" onclick="exportarDados()">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                    Exportar CSV
+                </button>
+            </div>
+        </header>
+
+        <!-- Dashboard -->
+        <section id="content-dashboard">
+            <div class="kpi-grid" id="kpiGrid">
+                <div class="kpi-card"><div class="skeleton" style="height:12px; width:60%; margin-bottom:10px"></div><div class="skeleton" style="height:28px; width:40%"></div></div>
+                <div class="kpi-card"><div class="skeleton" style="height:12px; width:60%; margin-bottom:10px"></div><div class="skeleton" style="height:28px; width:40%"></div></div>
+                <div class="kpi-card"><div class="skeleton" style="height:12px; width:60%; margin-bottom:10px"></div><div class="skeleton" style="height:28px; width:40%"></div></div>
+                <div class="kpi-card"><div class="skeleton" style="height:12px; width:60%; margin-bottom:10px"></div><div class="skeleton" style="height:28px; width:40%"></div></div>
+                <div class="kpi-card"><div class="skeleton" style="height:12px; width:60%; margin-bottom:10px"></div><div class="skeleton" style="height:28px; width:40%"></div></div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h4 style="font-weight: 600;">Projetos por Área de Conhecimento</h4>
+                    </div>
+                    <div style="height: 300px;"><canvas id="chartAreas"></canvas></div>
+                </div>
+                <div class="chart-container">
+                    <div class="chart-header">
+                        <h4 style="font-weight: 600;">Parecer dos Projetos</h4>
+                    </div>
+                    <div style="height: 300px;"><canvas id="chartStatus"></canvas></div>
+                </div>
+            </div>
+
+            <div class="charts-grid">
+                <div class="activity-feed">
+                    <h4 style="font-weight: 600; margin-bottom: 16px;">Atividades Recentes</h4>
+                    <div id="activityFeed">
+                        <div class="loading" style="text-align:center; padding:20px; color:var(--text-muted)">Carregando atividades...</div>
+                    </div>
+                </div>
+                <div class="chart-container" style="height: auto;">
+                    <div class="chart-header">
+                        <h4 style="font-weight: 600;">Evolução Anual</h4>
+                    </div>
+                    <div style="height: 250px;"><canvas id="chartEvolucao"></canvas></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projetos -->
+        <section id="content-projetos" style="display:none">
+            <div class="table-section">
+                <div class="table-header" style="flex-direction: column; align-items: stretch; gap: 12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                        <h2 style="font-weight: 600;">Projetos Cadastrados</h2>
+                        <div class="search-box">
+                            <svg style="position:absolute; left:12px; top:12px; color:var(--text-muted)" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <input type="text" id="tableSearch" placeholder="Buscar por projeto, coordenador ou área...">
+                        </div>
+                    </div>
+                    <div class="filters-row" id="filtersRow">
+                        <label class="filter-label">Campus
+                            <select id="filterCampus" onchange="aplicarFiltros()"></select>
+                        </label>
+                        <label class="filter-label">Área
+                            <select id="filterArea" onchange="aplicarFiltros()"></select>
+                        </label>
+                        <label class="filter-label">Parecer
+                            <select id="filterParecer" onchange="aplicarFiltros()"></select>
+                        </label>
+                        <label class="filter-label">Ano Início
+                            <select id="filterAno" onchange="aplicarFiltros()"></select>
+                        </label>
+                        <label class="filter-label">Financiamento
+                            <select id="filterFin" onchange="aplicarFiltros()">
+                                <option value="">Todos</option>
+                                <option value="0">Sem financiamento</option>
+                                <option value="1+">Com financiamento</option>
+                            </select>
+                        </label>
+                        <button class="btn" onclick="limparFiltros()" style="align-self:flex-end;">Limpar</button>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="projectsTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTable(0)">Código ↕</th>
+                                <th onclick="sortTable(1)">Título ↕</th>
+                                <th onclick="sortTable(2)">Coordenador ↕</th>
+                                <th onclick="sortTable(3)">Campus ↕</th>
+                                <th onclick="sortTable(4)">Área ↕</th>
+                                <th onclick="sortTable(5)">Parecer ↕</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBody">
+                            <tr><td colspan="6"><div class="skeleton" style="height:20px; width:100%"></div></td></tr>
+                            <tr><td colspan="6"><div class="skeleton" style="height:20px; width:100%"></div></td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+        <!-- Relatórios -->
+        <section id="content-relatorios" style="display:none">
+            <div class="table-section">
+                <div class="table-header" style="justify-content:space-between;">
+                    <h2 style="font-weight: 600;">Relatório de Projetos</h2>
+                    <button class="btn" onclick="window.print()">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>
+                        Imprimir
+                    </button>
+                </div>
+                <div style="padding: 24px;" id="relatorioContent">
+                    <div class="skeleton" style="height:20px; width:100%; margin-bottom:10px"></div>
+                    <div class="skeleton" style="height:20px; width:80%"></div>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <p>SIGPESQ — Sistema de Gestão de Pesquisa · IFES Campus Linhares</p>
+            <p style="margin-top: 4px;">© 2026 Instituto Federal do Espírito Santo</p>
+        </footer>
+    </main>
+
+    <script>
+        let projetos = [];
+        let dadosFiltrados = [];
+        let chartArea, chartStatus, chartEvolucao;
+
+        // ===== TEMA ESCURO =====
+        const themeToggle = document.getElementById('themeToggle');
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        document.body.setAttribute('data-theme', savedTheme);
+
+        themeToggle.addEventListener('click', () => {
+            const isDark = document.body.getAttribute('data-theme') === 'dark';
+            document.body.setAttribute('data-theme', isDark ? 'light' : 'dark');
+            localStorage.setItem('theme', isDark ? 'light' : 'dark');
+        });
+
+        // ===== NAVEGAÇÃO =====
+        const navItems = document.querySelectorAll('.nav-item');
+        navItems.forEach(item => {
+            item.addEventListener('click', () => {
+                navItems.forEach(i => i.classList.remove('active'));
+                item.classList.add('active');
+
+                const section = item.dataset.section;
+                document.querySelectorAll('main > section').forEach(s => s.style.display = 'none');
+                const target = document.getElementById(`content-${section}`);
+                if (target) target.style.display = 'block';
+
+                if (window.innerWidth <= 1024) toggleSidebar();
+            });
+        });
+
+        // ===== MOBILE MENU =====
+        const menuToggle = document.getElementById('menuToggle');
+        const sidebar = document.getElementById('sidebar');
+        const overlay = document.getElementById('overlay');
+
+        function toggleSidebar() {
+            sidebar.classList.toggle('open');
+            overlay.classList.toggle('open');
+        }
+
+        menuToggle.addEventListener('click', toggleSidebar);
+        overlay.addEventListener('click', toggleSidebar);
+
+        if (window.innerWidth <= 1024) menuToggle.style.display = 'block';
+
+        // ===== CARREGAR DADOS =====
+        async function carregarDados() {
+            try {
+                const resp = await fetch('dados.json');
+                if (!resp.ok) throw new Error('Arquivo dados.json não encontrado');
+                projetos = await resp.json();
+
+                renderKPIs();
+                popularFiltros();
+                aplicarFiltros();
+                renderActivityFeed(projetos);
+                initCharts(projetos);
+                renderRelatorio();
+
+                document.getElementById('lastUpdate').innerText = 'Atualizado em ' + new Date().toLocaleTimeString();
+            } catch (e) {
+                document.getElementById('kpiGrid').innerHTML = `
+                    <div class="kpi-card" style="grid-column: 1/-1; text-align:center; color:var(--text-muted)">
+                        <p>Nenhum dado encontrado.</p>
+                        <p style="margin-top:8px; font-size:0.875rem">Clique em "Atualizar dados" para coletar do SIGPESQ.</p>
+                    </div>`;
+            }
+        }
+
+        // ===== KPIs =====
+        function renderKPIs() {
+            const grid = document.getElementById('kpiGrid');
+            const areas = [...new Set(projetos.map(p => p.area).filter(Boolean))];
+            const campi = [...new Set(projetos.map(p => p.campusExecucao || p.campusLotacao).filter(Boolean))];
+            const aprovados = projetos.filter(p => p.parecer === 'Aprovado').length;
+            const comFinanciamento = projetos.filter(p => parseInt(p.financiamentos) > 0).length;
+
+            const stats = [
+                { label: 'Total de Projetos', val: projetos.length },
+                { label: 'Aprovados', val: aprovados },
+                { label: 'Com Financiamento', val: comFinanciamento },
+                { label: 'Áreas do Conhecimento', val: areas.length },
+                { label: 'Campi', val: campi.length }
+            ];
+
+            grid.innerHTML = stats.map(s => `
+                <div class="kpi-card">
+                    <h3>${s.label}</h3>
+                    <div class="value">${s.val}</div>
+                </div>
+            `).join('');
+        }
+
+        // ===== TABELA =====
+        function renderTable(data) {
+            const tbody = document.getElementById('tableBody');
+            if (!data.length) {
+                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:40px">Nenhum projeto encontrado</td></tr>';
+                return;
+            }
+            tbody.innerHTML = data.map(p => `
+                <tr>
+                    <td>${p.id || '-'}</td>
+                    <td style="font-weight:600">${p.nome || '-'}</td>
+                    <td>${p.coordenador || '-'}</td>
+                    <td>${p.campusExecucao || p.campusLotacao || '-'}</td>
+                    <td>${p.area || '-'}</td>
+                    <td><span class="status-pill" style="background:${getStatusColor(p.parecer)}20; color:${getStatusColor(p.parecer)}">${p.parecer || '-'}</span></td>
+                </tr>
+            `).join('');
+        }
+
+        function getStatusColor(parecer) {
+            const map = {
+                'Aprovado': '#10b981',
+                'Em análise': '#f59e0b',
+                'Reprovado': '#ef4444',
+                'Concluído': '#1a56db',
+                'Pendente': '#8b5cf6'
+            };
+            return map[parecer] || '#6b7280';
+        }
+
+        // ===== ATIVIDADES =====
+        function renderActivityFeed(data) {
+            const feed = document.getElementById('activityFeed');
+            const recentes = data.slice(0, 5);
+
+            if (!recentes.length) {
+                feed.innerHTML = '<p style="color:var(--text-muted); text-align:center; padding:20px">Nenhuma atividade</p>';
+                return;
+            }
+
+            feed.innerHTML = recentes.map(p => `
+                <div class="activity-item">
+                    <div class="activity-dot" style="background:${getStatusColor(p.parecer)}"></div>
+                    <div>
+                        <div class="activity-text">${p.nome}</div>
+                        <div class="activity-time">${p.coordenador || 'Sem coordenador'} · ${p.area || 'Sem área'}</div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        // ===== CHARTS =====
+        function initCharts(data) {
+            if (chartArea) chartArea.destroy();
+            if (chartStatus) chartStatus.destroy();
+            if (chartEvolucao) chartEvolucao.destroy();
+
+            const areas = {};
+            data.forEach(p => { if (p.area) areas[p.area] = (areas[p.area] || 0) + 1; });
+
+            const pareceres = {};
+            data.forEach(p => { if (p.parecer) pareceres[p.parecer] = (pareceres[p.parecer] || 0) + 1; });
+
+            const anos = {};
+            data.forEach(p => { if (p.anoInicio) anos[p.anoInicio] = (anos[p.anoInicio] || 0) + 1; });
+
+            chartArea = new Chart(document.getElementById('chartAreas'), {
+                type: 'bar',
+                data: {
+                    labels: Object.keys(areas),
+                    datasets: [{ label: 'Projetos', data: Object.values(areas), backgroundColor: '#1a56db' }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            });
+
+            chartStatus = new Chart(document.getElementById('chartStatus'), {
+                type: 'doughnut',
+                data: {
+                    labels: Object.keys(pareceres),
+                    datasets: [{ data: Object.values(pareceres), backgroundColor: ['#10b981', '#1a56db', '#f59e0b', '#ef4444', '#8b5cf6'] }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
+            });
+
+            chartEvolucao = new Chart(document.getElementById('chartEvolucao'), {
+                type: 'line',
+                data: {
+                    labels: Object.keys(anos).sort(),
+                    datasets: [{ label: 'Projetos', data: Object.keys(anos).sort().map(a => anos[a]), borderColor: '#1a56db', fill: false, tension: 0.3 }]
+                },
+                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+            });
+        }
+
+        // ===== RELATÓRIO =====
+        function renderRelatorio() {
+            const el = document.getElementById('relatorioContent');
+            if (!projetos.length) {
+                el.innerHTML = '<p style="color:var(--text-muted)">Nenhum dado disponível.</p>';
+                return;
+            }
+
+            const aprovados = projetos.filter(p => p.parecer === 'Aprovado').length;
+            const recusados = projetos.filter(p => p.parecer === 'Recusado').length;
+            const comFin = projetos.filter(p => parseInt(p.financiamentos) > 0).length;
+
+            const porCampus = contar(projetos, p => p.campusExecucao || p.campusLotacao);
+            const porArea = contar(projetos, p => p.area);
+            const porAno = contar(projetos, p => p.anoInicio);
+            const porCoordenador = contar(projetos, p => p.coordenador);
+
+            el.innerHTML = `
+                <h3 style="font-weight:600; margin-bottom:16px;">Visão Geral</h3>
+                <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr);">
+                    ${miniKpi('Total de Projetos', projetos.length)}
+                    ${miniKpi('Aprovados', aprovados)}
+                    ${miniKpi('Recusados', recusados)}
+                    ${miniKpi('Com Financiamento', comFin)}
+                </div>
+
+                <h3 style="font-weight:600; margin:24px 0 16px;">Projetos por Campus</h3>
+                ${tabelaContagem(porCampus, ['Campus', 'Quantidade'])}
+
+                <h3 style="font-weight:600; margin:24px 0 16px;">Projetos por Área de Conhecimento</h3>
+                ${tabelaContagem(porArea, ['Área', 'Quantidade'])}
+
+                <h3 style="font-weight:600; margin:24px 0 16px;">Evolução por Ano de Início</h3>
+                ${tabelaContagem(porAno, ['Ano', 'Quantidade'], true)}
+
+                <h3 style="font-weight:600; margin:24px 0 16px;">Coordenadores (Top 15)</h3>
+                ${tabelaContagem(porCoordenador, ['Coordenador', 'Projetos'], false, 15)}
+            `;
+        }
+
+        function contar(dados, chaveFn) {
+            const mapa = {};
+            dados.forEach(p => {
+                const chave = chaveFn(p);
+                if (chave) mapa[chave] = (mapa[chave] || 0) + 1;
+            });
+            return mapa;
+        }
+
+        function miniKpi(label, valor) {
+            return `<div class="kpi-card"><h3>${label}</h3><div class="value">${valor}</div></div>`;
+        }
+
+        function tabelaContagem(mapa, cabecalhos, ordenarPorValorNumerico, limite) {
+            let linhas = Object.entries(mapa);
+            if (ordenarPorValorNumerico) {
+                linhas.sort((a, b) => a[0].localeCompare(b[0]));
+            } else {
+                linhas.sort((a, b) => b[1] - a[1]);
+            }
+            if (limite) linhas = linhas.slice(0, limite);
+
+            const corpo = linhas.map(([k, v]) => `<tr><td>${k}</td><td style="text-align:center">${v}</td></tr>`).join('');
+            return `<div class="table-wrapper" style="margin-bottom:16px;">
+                <table><thead><tr>${cabecalhos.map(c => `<th>${c}</th>`).join('')}</tr></thead>
+                <tbody>${corpo}</tbody></table>
+            </div>`;
+        }
+
+        // ===== FILTROS =====
+        function popularFiltros() {
+            const campus = [...new Set(projetos.map(p => p.campusExecucao || p.campusLotacao).filter(Boolean))].sort();
+            const areas = [...new Set(projetos.map(p => p.area).filter(Boolean))].sort();
+            const pareceres = [...new Set(projetos.map(p => p.parecer).filter(Boolean))].sort();
+            const anos = [...new Set(projetos.map(p => p.anoInicio).filter(Boolean))].sort().reverse();
+
+            preencherSelect('filterCampus', campus);
+            preencherSelect('filterArea', areas);
+            preencherSelect('filterParecer', pareceres);
+            preencherSelect('filterAno', anos);
+        }
+
+        function preencherSelect(id, opcoes) {
+            const sel = document.getElementById(id);
+            const atual = sel.value;
+            sel.innerHTML = '<option value="">Todos</option>' + opcoes.map(o => `<option value="${o}">${o}</option>`).join('');
+            sel.value = atual;
+        }
+
+        function aplicarFiltros() {
+            const termo = (document.getElementById('tableSearch').value || '').toLowerCase();
+            const fCampus = document.getElementById('filterCampus').value;
+            const fArea = document.getElementById('filterArea').value;
+            const fParecer = document.getElementById('filterParecer').value;
+            const fAno = document.getElementById('filterAno').value;
+            const fFin = document.getElementById('filterFin').value;
+
+            dadosFiltrados = projetos.filter(p => {
+                const campus = p.campusExecucao || p.campusLotacao || '';
+                if (fCampus && campus !== fCampus) return false;
+                if (fArea && p.area !== fArea) return false;
+                if (fParecer && p.parecer !== fParecer) return false;
+                if (fAno && String(p.anoInicio) !== fAno) return false;
+                if (fFin === '0' && parseInt(p.financiamentos) > 0) return false;
+                if (fFin === '1+' && parseInt(p.financiamentos) <= 0) return false;
+
+                if (termo) {
+                    const alvo = `${p.nome} ${p.coordenador} ${p.area}`.toLowerCase();
+                    if (!alvo.includes(termo)) return false;
+                }
+                return true;
+            });
+
+            renderTable(dadosFiltrados);
+        }
+
+        function limparFiltros() {
+            document.getElementById('tableSearch').value = '';
+            document.getElementById('filterCampus').value = '';
+            document.getElementById('filterArea').value = '';
+            document.getElementById('filterParecer').value = '';
+            document.getElementById('filterAno').value = '';
+            document.getElementById('filterFin').value = '';
+            aplicarFiltros();
+        }
+
+        function debounce(func, timeout = 300) {
+            let timer;
+            return (...args) => {
+                clearTimeout(timer);
+                timer = setTimeout(() => func.apply(this, args), timeout);
+            };
+        }
+
+        document.getElementById('tableSearch').addEventListener('input', debounce(aplicarFiltros));
+
+        // ===== ORDENAR =====
+        let sortDirection = false;
+        function sortTable(colIndex) {
+            sortDirection = !sortDirection;
+            const keys = ['id', 'nome', 'coordenador', 'campusExecucao', 'area', 'parecer'];
+            const key = keys[colIndex];
+
+            dadosFiltrados.sort((a, b) => {
+                const va = a[key] || '';
+                const vb = b[key] || '';
+                if (va < vb) return sortDirection ? -1 : 1;
+                if (va > vb) return sortDirection ? 1 : -1;
+                return 0;
+            });
+            renderTable(dadosFiltrados);
+        }
+
+        // ===== EXPORTAR CSV =====
+        function exportarDados() {
+            const dados = dadosFiltrados.length ? dadosFiltrados : projetos;
+            if (!dados.length) { alert('Nenhum dado para exportar'); return; }
+            const headers = ["Codigo", "Titulo", "Coordenador", "Campus Lotacao", "Campus Execucao", "Area", "Financiamentos", "Ano Inicio", "Parecer", "Atualizado Em"];
+            const rows = dados.map(p =>
+                [p.id, `"${p.nome}"`, `"${p.coordenador || ''}"`, p.campusLotacao || '', p.campusExecucao || '', p.area || '', p.financiamentos || '', p.anoInicio || '', p.parecer || '', p.atualizadoEm || ''].join(",")
+            );
+            const csv = "data:text/csv;charset=utf-8," + headers.join(",") + "\n" + rows.join("\n");
+            const link = document.createElement("a");
+            link.setAttribute("href", encodeURI(csv));
+            link.setAttribute("download", "projetos_sigpesq_linhares.csv");
+            document.body.appendChild(link);
+            link.click();
+        }
+
+        // ===== ATUALIZAR DADOS =====
+        async function atualizarDados() {
+            const btn = document.getElementById('btnAtualizar');
+            btn.disabled = true;
+            btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Atualizando...';
+
+            try {
+                const resp = await fetch('/atualizar', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({})
+                });
+
+                const dados = await resp.json();
+                if (resp.ok) {
+                    alert('Atualização iniciada!\n\nAguarde 30 segundos e depois:\n1. Clique em "Recarregar" no navegador (F5)\n2. Ou clique em "Atualizar dados" novamente');
+                } else {
+                    alert('Erro: ' + (dados.erro || 'Não foi possível atualizar'));
+                }
+            } catch (e) {
+                alert('Erro ao conectar com o servidor.\n\nVerifique se o servidor está rodando:\npython3 server.py\n\nDetalhes: ' + e.message);
+            } finally {
+                btn.disabled = false;
+                btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Atualizar dados';
+            }
+        }
+
+        // ===== INICIAR =====
+        carregarDados();
+    </script>
+</body>
+</html>
