@@ -3,6 +3,7 @@ import json
 import os
 import shutil
 import sys
+from datetime import datetime
 from getpass import getpass
 from pathlib import Path
 
@@ -68,6 +69,22 @@ def salvar_dados(dados, dashboard=None):
         writer.writeheader()
         writer.writerows(dados)
     print(f"[OK] CSV salvo em {csv_path}")
+
+    # Copiar para pasta pública (vai para o ar via GitHub Pages, etc.)
+    publica_json = PASTA_PUBLICA / "dados.json"
+    publica_json.write_text(json.dumps(dados, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[OK] Dados públicos salvos em {publica_json}")
+
+    # Metadados do deploy para exibição no dashboard
+    meta = {
+        "geradoEm": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
+        "campus": "Linhares",
+        "totalProjetos": len(dados),
+        "versao": "Plano A (estático)"
+    }
+    meta_path = PASTA_PUBLICA / "meta.json"
+    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+    print(f"[OK] Metadados salvos em {meta_path}")
 
     # Copiar para dashboard/
     dashboard_json = PASTA_DASHBOARD / "dados.json"

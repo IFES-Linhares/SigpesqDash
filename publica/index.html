@@ -576,6 +576,8 @@
         // ===== CARREGAR DADOS =====
         async function carregarDados() {
             try {
+                let meta = {};
+                try { meta = await (await fetch('meta.json')).json(); } catch {}
                 const resp = await fetch('dados.json');
                 if (!resp.ok) throw new Error('Arquivo dados.json não encontrado');
                 projetos = await resp.json();
@@ -587,7 +589,8 @@
                 initCharts(projetos);
                 renderRelatorio();
 
-                document.getElementById('lastUpdate').innerText = 'Atualizado em ' + new Date().toLocaleTimeString();
+                document.getElementById('lastUpdate').innerText =
+                    (meta.geradoEm || '') + ' | ' + (meta.totalProjetos || projetos.length) + ' projetos';
             } catch (e) {
                 document.getElementById('kpiGrid').innerHTML = `
                     <div class="kpi-card" style="grid-column: 1/-1; text-align:center; color:var(--text-muted)">
@@ -885,26 +888,18 @@
         }
 
         // ===== ATUALIZAR DADOS =====
-        async function atualizarDados() {
+        function atualizarDados() {
             const btn = document.getElementById('btnAtualizar');
             btn.disabled = true;
             btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Atualizando...';
 
             try {
-                const resp = await fetch('/atualizar', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({})
-                });
+                const resp = { ok: true, json: async () => ({}) };
 
-                const dados = await resp.json();
-                if (resp.ok) {
-                    alert('Atualização iniciada!\n\nAguarde 30 segundos e depois:\n1. Clique em "Recarregar" no navegador (F5)\n2. Ou clique em "Atualizar dados" novamente');
-                } else {
-                    alert('Erro: ' + (dados.erro || 'Não foi possível atualizar'));
-                }
+                await new Promise(r => setTimeout(r, 300));
+                alert('Esta é uma visão pública. Os dados são atualizados pela diretoria.');
+                carregarDados();
             } catch (e) {
-                alert('Erro ao conectar com o servidor.\n\nVerifique se o servidor está rodando:\npython3 server.py\n\nDetalhes: ' + e.message);
             } finally {
                 btn.disabled = false;
                 btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/></svg> Atualizar dados';
