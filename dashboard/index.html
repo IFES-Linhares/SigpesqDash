@@ -382,6 +382,10 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
                 Relatórios
             </div>
+            <div class="nav-item" data-section="editais">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 17H2v2h20z"/><path d="M12 2L5 5v2h4l3-3z"/></svg>
+                Editais
+            </div>
             <div class="nav-item" data-section="grupos">
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
                 Grupos
@@ -564,6 +568,56 @@
             </div>
         </section>
 
+        <!-- Seção Editais -->
+        <section id="content-editais" style="display:none">
+            <div class="table-section">
+                <div class="table-header" style="flex-direction: column; align-items: stretch; gap: 12px;">
+                    <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px;">
+                        <div>
+                            <h2 style="font-weight: 600;">Editais de Fomento Abertos</h2>
+                            <p style="color:var(--text-muted); font-size:0.875rem; margin-top:4px">CPF não é necessário. Dados coletados automaticamente de FAPES, CNPq, CAPES e FINEP.</p>
+                        </div>
+                        <div class="search-box">
+                            <svg style="position:absolute; left:12px; top:12px; color:var(--text-muted)" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <input type="text" id="tableSearchEditais" placeholder="Buscar edital...">
+                        </div>
+                    </div>
+                    <div class="filters-row">
+                        <label class="filter-label">Agência
+                            <select id="filterEditaisAgencia" onchange="aplicarFiltrosEditais()">
+                                <option value="">Todas</option>
+                            </select>
+                        </label>
+                        <label class="filter-label">Prazo
+                            <select id="filterEditaisPrazo" onchange="aplicarFiltrosEditais()">
+                                <option value="">Todos</option>
+                                <option value="30d">Em até 30 dias</option>
+                                <option value="60d">Em até 60 dias</option>
+                                <option value="90d">Em até 90 dias</option>
+                            </select>
+                        </label>
+                    </div>
+                </div>
+                <div class="table-wrapper">
+                    <table id="editaisTable">
+                        <thead>
+                            <tr>
+                                <th onclick="sortTableEditais(0)">Agência</th>
+                                <th onclick="sortTableEditais(1)">Título ↕</th>
+                                <th onclick="sortTableEditais(2)">Prazo até ↕</th>
+                                <th onclick="sortTableEditais(3)">Situação ↕</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tableBodyEditais">
+                            <tr><td colspan="4" class="skeleton" style="height:20px; width:100%; padding:20px">
+                                Carregando editais...
+                            </td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
         <footer>
             <p>SIGPESQ — Sistema de Gestão de Pesquisa · IFES Campus Linhares</p>
             <p style="margin-top: 4px;">© 2026 Instituto Federal do Espírito Santo</p>
@@ -573,8 +627,10 @@
     <script>
         let projetos = [];
         let grupos = [];
+        let editais = [];
         let dadosFiltrados = [];
         let dadosFiltradosGrupos = [];
+        let dadosFiltradosEditais = [];
         let chartArea, chartStatus, chartEvolucao;
 
         // ===== TEMA ESCURO =====
@@ -619,6 +675,89 @@
 
         if (window.innerWidth <= 1024) menuToggle.style.display = 'block';
 
+        // ===== EDITAIS =====
+        function aplicarFiltrosEditais() {
+            let dados = [...editais];
+
+            const busca = document.getElementById('tableSearchEditais').value.toLowerCase();
+            if (busca) {
+                dados = dados.filter(e => e.titulo.toLowerCase().includes(busca));
+            }
+
+            const agencia = document.getElementById('filterEditaisAgencia').value;
+            if (agencia) dados = dados.filter(e => e.agencia === agencia);
+
+            const prazo = document.getElementById('filterEditaisPrazo').value;
+            if (prazo) {
+                const dias = parseInt(prazo);
+                const limite = new Date();
+                limite.setDate(limite.getDate() + dias);
+                dados = dados.filter(e => e.prazoFim && new Date(e.prazoFim) <= limite);
+            }
+
+            dadosFiltradosEditais = dados;
+            renderTableEditais(dados);
+        }
+
+        function popularFiltrosEditais() {
+            const select = document.getElementById('filterEditaisAgencia');
+            select.innerHTML = '<option value="">Todas</option>';
+            const agencias = [...new Set(editais.map(e => e.agencia))];
+            agencias.forEach(a => {
+                const opt = document.createElement('option');
+                opt.value = a;
+                opt.textContent = a;
+                select.appendChild(opt);
+            });
+        }
+
+        function renderTableEditais(data) {
+            const tbody = document.getElementById('tableBodyEditais');
+            if (!data.length) {
+                tbody.innerHTML = '<tr><td colspan="4" style="text-align:center;color:var(--text-muted);padding:40px">Nenhum edital com prazo aberto foi encontrado</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = data.map(e => {
+                const corAg = {
+                    'FAPES': '#FF6B00', 'CNPq': '#163296',
+                    'CAPES': '#FFCC00', 'FINEP': '#8B1E3F'
+                }[e.agencia] || '#6b7280';
+                const sit = e.situacao || 'Aberto';
+
+                return `
+                    <tr>
+                        <td><span class="status-pill" style="background:${corAg}20; color:${corAg}; font-weight:600">${e.agencia}</span></td>
+                        <td style="font-weight:500">${e.titulo || '-'}</td>
+                        <td>${formatarData(e.prazoFim)}</td>
+                        <td><span class="status-pill" style="background:${sit === 'Aberto' ? '#10b98120' : '#ef444420'}; color:${sit === 'Aberto' ? '#10b981' : '#ef4444'}">${sit}</span></td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function formatarData(str) {
+            if (!str) return '-';
+            if (/^\d{4}-\d{2}-\d{2}/.test(str)) return str.slice(0, 10).split('-').reverse().join('/');
+            return str;
+        }
+
+        let sortDirEditais = false;
+        function sortTableEditais(colIndex) {
+            sortDirEditais = !sortDirEditais;
+            const keys = ['agencia', 'titulo', 'prazoFim', 'situacao'];
+            const key = keys[colIndex];
+            dadosFiltradosEditais.sort((a, b) => {
+                const va = a[key] || '';
+                const vb = b[key] || '';
+                const cmp = va.toString().localeCompare(vb.toString(), 'pt-BR');
+                return sortDirEditais ? cmp : -cmp;
+            });
+            renderTableEditais(dadosFiltradosEditais);
+        }
+
+        document.getElementById('tableSearchEditais').addEventListener('input', debounce(aplicarFiltrosEditais));
+
         // ===== CARREGAR DADOS =====
         async function carregarDados() {
             try {
@@ -630,6 +769,10 @@
                 const respG = await fetch('grupos.json').catch(() => null);
                 grupos = respG && respG.ok ? await respG.json() : [];
 
+                // Carregar editais paralelamente (opcional)
+                const respE = await fetch('editais.json').catch(() => null);
+                editais = respE && respE.ok ? await respE.json() : [];
+
                 renderKPIs();
                 popularFiltros();
                 aplicarFiltros();
@@ -640,6 +783,11 @@
                 if (grupos.length > 0) {
                     popularFiltrosGrupos();
                     aplicarFiltrosGrupos();
+                }
+
+                if (editais.length > 0) {
+                    popularFiltrosEditais();
+                    aplicarFiltrosEditais();
                 }
 
                 document.getElementById('lastUpdate').innerText = 'Atualizado em ' + new Date().toLocaleTimeString();
