@@ -27,6 +27,7 @@ URL_DASHBOARD = f"{URL_BASE}/web/Dashboard.aspx"
 
 # Tela da Diretoria: TODOS os projetos da unidade (não só os coordenados)
 URL_PROJETOS_UNIDADE = f"{URL_BASE}/web/projeto/listaUnidade.aspx"
+URL_GRUPOS_UNIDADE = f"{URL_BASE}/web/GrupoPesquisa/listaUnidade.aspx"
 
 # Pasta pública para o GitHub Pages (docs/ é o padrão do GitHub Pages)
 PASTA_PUBLICA = Path(__file__).parent / "docs"
@@ -51,20 +52,79 @@ COLUNAS_UNIDADE = {
 }
 
 
-def salvar_dados(dados, dashboard=None):
-    if not dados:
+def coletar_tabela_paginada(page, url, mapa_colunas, nome_colecao="tabela"):
+    """Coleta todos os registros de uma tabela ASP.NET GridView com paginação."""
+    todos = []
+    print(f"[INFO] Acessando {nome_colecao}: {url}")
+    page.goto(url, timeout=30000)
+    page.wait_for_load_state("networkidle", timeout=15000)
+
+    total_paginas = detectar_total_paginas(page)
+
+    pagina = 1
+    while True:
+        tabela = page.query_selector("#ContentPlaceHolder_gvwLista")
+        if not tabela:
+            print(f"[AVISO] Tabela não encontrada em {nome_colecao}")
+            break
+
+        linhas = tabela.query_selector_all("tr")
+        for linha in linhas[1:]:  # pular cabeçalho
+            colunas = linha.query_selector_all("td")
+            if len(colunas) < len(mapa_colunas):
+                continue
+            texto_linha = linha.inner_text()
+            if "Mostrando de" in texto_linha or "registro(s)" in texto_linha:
+                continue
+
+            item = {}
+            for campo, indice in mapa_colunas.items():
+                item[campo] = colunas[indice].inner_text().strip()
+            todos.append(item)
+
+        print(f"[INFO] {nome_colecao} pág {pagina}: +{len([l for l in linhas if l.query_selector_all('td')])} | acumulado: {len(todos)}")
+
+        if pagina >= total_paginas:
+            break
+
+        if not ir_para_pagina(page, pagina + 1):
+            print("[AVISO] Interrompendo paginação")
+            break
+        pagina += 1
+
+    print(f"[OK] {nome_colecao}: {len(todos)} registros coletados")
+    return todos
+
+
+def salvar_dados(projetos, grupos, dashboard=None, unidade=None):
+    """Salva projetos, grupos e metadados nos formatos interno (dados/) e público (docs/)."""
+    if not projetos and not grupos:
         print("[AVISO] Nenhum dado para salvar")
         return
 
-    # Salvar em dados/
-    json_path = PASTA_DADOS / "dados.json"
-    with open(json_path, "w", encoding="utf-8") as f:
-        json.dump(dados, f, ensure_ascii=False, indent=2)
-    print(f"[OK] {len(dados)} registros salvos em {json_path}")
+    total_veículos = len(projetos)
+    total_grupos = len(grupos)
+    agora = datetime.now().strftime("%d/%m/%Y %H:%M:%S")
 
-    # Cabeçalho = união das chaves de todos os registros (evita quebrar se variarem)
+    # Salvar em dados/ (interno)
+    with open(PASTA_DADOS / "dados.json", "w", encoding="utf-8") as f:
+        json.dump(projetos, f, ensure_ascii=False, indent=2)
+
+    if grupos:
+        with open(PASTA_DADOS / "grupos.json", "w", encoding="utf-8") as f:
+            json.dump(grupos, f, ensure_ascii=False, indent=2)
+
+    # Salvar também em docs/ (pasta pública para GitHub Pages)
+    with open(PASTA_PUBLICA / "dados.json", "w", encoding="utf-8") as f:
+        json.dump(projetos, f, ensure_ascii=False, indent=2)
+
+    if grupos:
+        with open(PASTA_PUBLICA / "grupos.json", "w", encoding="utf-8") as f:
+            json.dump(grupos, f, ensure_ascii=False, indent=2)
+
+    # CSV de projetos
     colunas = []
-    for d in dados:
+    for d in projetos:
         for chave in d:
             if chave not in colunas:
                 colunas.append(chave)
@@ -73,24 +133,19 @@ def salvar_dados(dados, dashboard=None):
     with open(csv_path, "w", encoding="utf-8", newline="") as f:
         writer = csv.DictWriter(f, fieldnames=colunas, extrasaction="ignore")
         writer.writeheader()
-        writer.writerows(dados)
+        writer.writerows(projetos)
     print(f"[OK] CSV salvo em {csv_path}")
 
-    # Copiar para pasta pública (vai para o ar via GitHub Pages, etc.)
-    publica_json = PASTA_PUBLICA / "dados.json"
-    publica_json.write_text(json.dumps(dados, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[OK] Dados públicos salvos em {publica_json}")
-
-    # Metadados do deploy para exibição no dashboard
+    # Metadados para a dashboard pública
     meta = {
-        "geradoEm": datetime.now().strftime("%d/%m/%Y %H:%M:%S"),
-        "campus": "Linhares",
-        "totalProjetos": len(dados),
-        "versao": "Plano A (estático)"
+        "geradoEm": agora,
+        "campus": unidade or "Linhares",
+        "totalProjetos": total_veículos,
+        "totalGrupos": total_grupos,
     }
-    meta_path = PASTA_PUBLICA / "meta.json"
-    meta_path.write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
-    print(f"[OK] Metadados salvos em {meta_path}")
+    (PASTA_PUBLICA / "meta.json").write_text(json.dumps(meta, ensure_ascii=False, indent=2), encoding="utf-8")
+
+    print(f"[OK] {total_veículos} projetos + {total_grupos} grupos salvos")
 
     # Copiar para dashboard/
     dashboard_json = PASTA_DASHBOARD / "dados.json"
@@ -279,6 +334,52 @@ def coletar_projetos_unidade(page):
     return unicos
 
 
+def coletar_grupos_pesquisa(page):
+    grupos = []
+
+    print(f"[INFO] Acessando {URL_GRUPOS_UNIDADE}")
+    page.goto(URL_GRUPOS_UNIDADE, timeout=30000)
+    page.wait_for_load_state("networkidle", timeout=15000)
+
+    total_paginas = detectar_total_paginas(page)
+
+    pagina = 1
+    while True:
+        tabela = page.query_selector("#ContentPlaceHolder_gvwLista")
+        if not tabela:
+            print("[AVISO] Tabela de grupos não encontrada")
+            break
+
+        linhas = tabela.query_selector_all("tr")
+        for linha in linhas[1:]:
+            colunas = linha.query_selector_all("td")
+            if len(colunas) < 8:
+                continue
+            texto = linha.inner_text()
+            if "Mostrando de" in texto or "registro(s)" in texto:
+                continue
+
+            grupos.append({
+                "nome": colunas[1].inner_text().strip(),
+                "lider": colunas[2].inner_text().strip(),
+                "campus": colunas[3].inner_text().strip(),
+                "anoInicio": colunas[4].inner_text().strip(),
+                "area": colunas[5].inner_text().strip(),
+                "situacao": colunas[6].inner_text().strip(),
+            })
+
+        print(f"[INFO] Grupos pág {pagina}: acumulado {len(grupos)}")
+
+        if pagina >= total_paginas:
+            break
+        if not ir_para_pagina(page, pagina + 1):
+            break
+        pagina += 1
+
+    print(f"[OK] {len(grupos)} grupos coletados")
+    return grupos
+
+
 def listar_unidades(page):
     """Lê as opções de unidade/acesso disponíveis no modal 'Acesso'."""
     unidades = []
@@ -342,6 +443,7 @@ def trocar_unidade(page, nome_unidade):
 
 def scraper(cpf, senha, unidade=None):
     projetos = []
+    grupos = []
     dashboard = {}
 
     with sync_playwright() as p:
@@ -350,7 +452,7 @@ def scraper(cpf, senha, unidade=None):
 
         try:
             if not login(page, cpf, senha):
-                return [], {}
+                return [], [], {}
 
             dashboard = coletar_dashboard(page)
 
@@ -358,6 +460,7 @@ def scraper(cpf, senha, unidade=None):
                 trocar_unidade(page, unidade)
 
             projetos = coletar_projetos_unidade(page)
+            grupos = coletar_grupos_pesquisa(page)
 
         except PWTimeout as e:
             page.screenshot(path=str(PASTA_DADOS / "erro.png"))
@@ -370,10 +473,13 @@ def scraper(cpf, senha, unidade=None):
         finally:
             browser.close()
 
+    # Salvar projetos e grupos separadamente
     if projetos:
         salvar_dados(projetos, dashboard)
+    if grupos:
+        salvar_grupos(grupos)
 
-    return projetos, dashboard
+    return projetos, grupos, dashboard
 
 
 if __name__ == "__main__":

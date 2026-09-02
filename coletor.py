@@ -47,15 +47,15 @@ def coletar() -> bool:
     print(f"Hora do início: {time.strftime('%d/%m/%Y %H:%M:%S')}")
     print()
 
-    projetos, dashboard = scraper(cpf, senha)
+    projetos, grupos, dashboard = scraper(cpf, senha)
 
     tempo = time.time() - inicio
     print()
     print("=" * 50)
     if projetos:
-        print(f"  SUCESSO - {len(projetos)} projetos coletados")
+        print(f"  SUCESSO - {len(projetos)} projetos e {len(grupos)} grupos coletados")
         print(f"  Tempo total: {tempo:.1f} segundos")
-        print(f"  Dados salvos em: dados/dados.json e docs/")
+        print(f"  Dados salvos em: dados/, docs/ (pronto para GitHub)")
     else:
         print("  FALHA - nenhum projeto coletado")
     print("=" * 50)
