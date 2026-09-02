@@ -15,6 +15,9 @@ PORT = int(os.environ.get("SIGPESQ_PORT", "8080"))
 HOST_PULL = os.environ.get("SIGPESQ_HOST", "127.0.0.1")  # Local só pelo diretor
 PASTA_BASE = Path(__file__).parent
 PASTA_DADOS = PASTA_BASE / "dados"
+# Público (GitHub Pages) - docs/index.html
+PASTA_PUBLICA = PASTA_BASE / "docs"
+# Local (dashboard com interface própria)
 PASTA_DASHBOARD = PASTA_BASE / "dashboard"
 PUBLICA = PASTA_BASE / "docs"  # Pasta pública para GitHub Pages
 ULTIMA_ATUALIZACAO = [0]

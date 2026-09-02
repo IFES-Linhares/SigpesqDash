@@ -147,10 +147,11 @@ def salvar_dados(projetos, grupos, dashboard=None, unidade=None):
 
     print(f"[OK] {total_veículos} projetos + {total_grupos} grupos salvos")
 
-    # Copiar para dashboard/
-    dashboard_json = PASTA_DASHBOARD / "dados.json"
-    shutil.copy2(json_path, dashboard_json)
-    print(f"[OK] Copiado para {dashboard_json}")
+    # Copiar para pasta dados/ (para visualização local via server.py)
+    for nome in ["dados.json", "grupos.json", "editais.json"]:
+        src = PASTA_PUBLICA / nome
+        if src.exists():
+            shutil.copy2(src, PASTA_DASHBOARD / nome)
 
     # Resumo do dashboard
     if dashboard:
@@ -473,11 +474,9 @@ def scraper(cpf, senha, unidade=None):
         finally:
             browser.close()
 
-    # Salvar projetos e grupos separadamente
-    if projetos:
-        salvar_dados(projetos, dashboard)
-    if grupos:
-        salvar_grupos(grupos)
+    # Salvar projetos e grupos na mesma função
+    if projetos or grupos:
+        salvar_dados(projetos, grupos, dashboard, unidade)
 
     return projetos, grupos, dashboard
 

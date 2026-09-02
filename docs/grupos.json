@@ -1,1 +1,66 @@
-[]
+[
+  {
+    "nome": "ECOINOVA",
+    "lider": "Ecologia e inovação para sustentabilidade ambiental e agrícola CNPq",
+    "campus": "Linhares",
+    "anoInicio": "Ciências Ambientais",
+    "area": "Claudio Sergio Marinato, KATIA APARECIDA KERN CARDOSO",
+    "situacao": "Certificado"
+  },
+  {
+    "nome": "ECI",
+    "lider": "Educação Comparada Internacional CNPq",
+    "campus": "Linhares",
+    "anoInicio": "Educação",
+    "area": "Homero Alberto Gomes da Silva, Marcio Vieira Rodrigues",
+    "situacao": "Certificado"
+  },
+  {
+    "nome": "GEPAEP",
+    "lider": "Grupo de Estudos e Pesquisa em Administração e Educação Profissional CNPq",
+    "campus": "Linhares",
+    "anoInicio": "Administração",
+    "area": "Ellen Luci Bruneli Pessoa",
+    "situacao": "Certificado"
+  },
+  {
+    "nome": "GEPACE",
+    "lider": "Grupo de estudos e pesquisa em Administração, Ciências Contábeis e Economia CNPq",
+    "campus": "Linhares",
+    "anoInicio": "Administração",
+    "area": "Osmar José Bertholini Pianca, Tiago José Pessotti",
+    "situacao": "Certificado"
+  },
+  {
+    "nome": "GREEN",
+    "lider": "Grupo de Estudos em Energia CNPq",
+    "campus": "Linhares",
+    "anoInicio": "Engenharia Elétrica",
+    "area": "Alysson Augusto Pereira Machado",
+    "situacao": "Certificado"
+  },
+  {
+    "nome": "GIACNTEC",
+    "lider": "GRUPO DE INVESTIGAÇÃO E APLICAÇÃO EM CIÊNCIAS NATURAIS E TECNOLÓGICAS CNPq",
+    "campus": "Linhares",
+    "anoInicio": "Biologia Geral",
+    "area": "César Silva Xavier, Claudio Sergio Marinato",
+    "situacao": "Certificado"
+  },
+  {
+    "nome": "GPRAI",
+    "lider": "Grupo de Pesquisa em Robótica e Automação Industrial CNPq",
+    "campus": "Linhares",
+    "anoInicio": "Engenharia Elétrica",
+    "area": "Lucas Vago Santana, Roberto Felipe Andrade Menezes",
+    "situacao": "Certificado"
+  },
+  {
+    "nome": "Lieppe",
+    "lider": "Laboratório de Inclusão Escolar e Práticas Pedagógicas Emancipatórias CNPq",
+    "campus": "Linhares",
+    "anoInicio": "Educação",
+    "area": "Merislandia Paulo da Silva Carvalho",
+    "situacao": "Certificado"
+  }
+]
