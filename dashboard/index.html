@@ -397,8 +397,8 @@
         <header>
             <div class="header-title">
                 <button class="btn" id="menuToggle" style="display: none;">☰</button>
-                <h1>Dashboard Estratégico</h1>
-                <p>Gestão Integrada de Pesquisa — IFES Campus Linhares | <span id="lastUpdate">Carregando...</span></p>
+                <h1>Dashboard de Pesquisa</h1>
+                <p><strong style="font-weight:700;">IFES Campus Linhares</strong> | <span id="lastUpdate">Carregando...</span></p>
             </div>
             <div class="header-actions">
                 <button class="btn" id="themeToggle" title="Alternar Modo Escuro">
@@ -619,8 +619,7 @@
         </section>
 
         <footer>
-            <p>SIGPESQ — Sistema de Gestão de Pesquisa · IFES Campus Linhares</p>
-            <p style="margin-top: 4px;">© 2026 Instituto Federal do Espírito Santo</p>
+            <p>IFES — Campus Linhares · Pesquisa, Extensão e Inovação</p>
         </footer>
     </main>
 
@@ -764,6 +763,8 @@
                 const resp = await fetch('dados.json');
                 if (!resp.ok) throw new Error('Arquivo dados.json não encontrado');
                 projetos = await resp.json();
+                // Excluir projetos com parecer "Recusado" conforme pedido do diretor
+                projetos = projetos.filter(p => p.parecer !== 'Recusado');
 
                 // Carregar grupos paralelamente
                 const respG = await fetch('grupos.json').catch(() => null);
@@ -800,26 +801,24 @@
             }
         }
 
-        // ===== KPIs =====
+// ===== KPIs =====
         function renderKPIs() {
+            // Só mostra Aprovados (não mostramos os Recusados)
             const grid = document.getElementById('kpiGrid');
-            const areas = [...new Set(projetos.map(p => p.area).filter(Boolean))];
-            const campi = [...new Set(projetos.map(p => p.campusExecucao || p.campusLotacao).filter(Boolean))];
-            const aprovados = projetos.filter(p => p.parecer === 'Aprovado').length;
-            const comFinanciamento = projetos.filter(p => parseInt(p.financiamentos) > 0).length;
+            const projetos_filtrados = projetos.filter(p => p.parecer !== 'Recusado');
+            const areasAprovadas = [...new Set(projetos_filtrados.map(p => p.area).filter(Boolean))];
+            const comFinanciamento = projetos_filtrados.filter(p => parseInt(p.financiamentos) > 0).length;
 
             const stats = [
                 { label: 'Total de Projetos', val: projetos.length, filtro: null },
-                { label: 'Aprovados', val: aprovados, filtro: 'parecer', valor: 'Aprovado' },
+                { label: 'Aprovados', val: projetos.filter(p => p.parecer === 'Aprovado').length, filtro: 'parecer', valor: 'Aprovado' },
                 { label: 'Com Financiamento', val: comFinanciamento, filtro: 'financiamento', valor: '1+' },
-                { label: 'Áreas do Conhecimento', val: areas.length, filtro: null },
-                { label: 'Campi', val: campi.length, filtro: null }
+                { label: 'Áreas de Conhecimento', val: areasAprovadas.length, filtro: null },
+                { label: 'Campus Linhares', val: 1, filtro: null }
             ];
 
             grid.innerHTML = stats.map(s => `
-                <div class="kpi-card" onclick="filtrarKPI('${s.filtro}', '${s.valor}')" 
-                     style="cursor: pointer; transition: transform 0.15s ease, box-shadow 0.15s ease;"
-                     onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+                <div class="kpi-card" onclick="filtrarKPI('${s.filtro}', '${s.valor}')" style="cursor: ${s.filtro ? 'pointer' : 'default'}; transition: transform 0.15s ease, box-shadow 0.15s ease;">
                     <h3>${s.label}</h3>
                     <div class="value">${s.val}</div>
                 </div>
@@ -921,27 +920,37 @@
 
             const areas = {};
             data.forEach(p => { if (p.area) areas[p.area] = (areas[p.area] || 0) + 1; });
+            // Top 8 áreas, ordenar desc
+            const topAreas = Object.entries(areas).sort((a, b) => b[1] - a[1]).slice(0, 8);
 
+            // Parecer considerando apenas Aprovado (recusados removidos)
             const pareceres = {};
             data.forEach(p => { if (p.parecer) pareceres[p.parecer] = (pareceres[p.parecer] || 0) + 1; });
 
             const anos = {};
             data.forEach(p => { if (p.anoInicio) anos[p.anoInicio] = (anos[p.anoInicio] || 0) + 1; });
 
+            // Gráfico de barras horizontais (mais legível)
             chartArea = new Chart(document.getElementById('chartAreas'), {
                 type: 'bar',
                 data: {
-                    labels: Object.keys(areas),
-                    datasets: [{ label: 'Projetos', data: Object.values(areas), backgroundColor: '#1a56db' }]
+                    labels: topAreas.map(a => a[0]),
+                    datasets: [{ label: 'Quantidade', data: topAreas.map(a => a[1]), backgroundColor: '#1a56db' }]
                 },
-                options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { display: false } } }
+                options: {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: { legend: { display: false } },
+                    scales: { x: { ticks: { precision: 0 } } }
+                }
             });
 
             chartStatus = new Chart(document.getElementById('chartStatus'), {
                 type: 'doughnut',
                 data: {
                     labels: Object.keys(pareceres),
-                    datasets: [{ data: Object.values(pareceres), backgroundColor: ['#10b981', '#1a56db', '#f59e0b', '#ef4444', '#8b5cf6'] }]
+                    datasets: [{ data: Object.values(pareceres), backgroundColor: ['#10b981', '#1a56db', '#f59e0b', '#8b5cf6'] }]
                 },
                 options: { responsive: true, maintainAspectRatio: false, plugins: { legend: { position: 'bottom' } } }
             });

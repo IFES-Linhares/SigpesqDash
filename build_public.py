@@ -50,6 +50,6 @@ h = h.replace(
             } finally {"""
 )
 
-with open('/home/joao/Documentos/codigos/python/homero/publica/index.html', 'w') as f:
+with open('/home/joao/Documentos/codigos/python/homero/docs/index.html', 'w') as f:
     f.write(h)
 print('OK')
