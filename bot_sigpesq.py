@@ -363,10 +363,9 @@ def coletar_grupos_pesquisa(page):
 
             grupos.append({
                 "nome": colunas[1].inner_text().strip(),
-                "lider": colunas[2].inner_text().strip(),
                 "campus": colunas[3].inner_text().strip(),
-                "anoInicio": colunas[4].inner_text().strip(),
-                "area": colunas[5].inner_text().strip(),
+                "area": colunas[4].inner_text().strip(),
+                "lider": colunas[5].inner_text().strip(),
                 "situacao": colunas[6].inner_text().strip(),
             })
 

@@ -18,11 +18,8 @@ h = h.replace(
                     (meta.geradoEm || '') + ' | ' + (meta.totalProjetos || projetos.length) + ' projetos';"""
 )
 
-# 3) atualizarDados() — modo estático (sem backend)
-h = h.replace(
-    """async function atualizarDados() {""",
-    """function atualizarDados() {"""
-)
+# 3) atualizarDados() — modo estático (sem backend).
+#    Mantém o "async" para que o "await" interno continue válido no JS.
 h = h.replace(
     """                const resp = await fetch('/atualizar', {
                     method: 'POST',
