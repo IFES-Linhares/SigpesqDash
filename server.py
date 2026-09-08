@@ -176,13 +176,32 @@ def pedir_credenciais():
     return cpf, senha
 
 
+def rodar_eventual_rodar(cpf, senha):
+    """Roda a coleta completa (bot SIGPESQ + editais) em thread, uma vez, ao iniciar."""
+    import coletor
+    os.environ["SIGPESQ_CPF"] = cpf
+    os.environ["SIGPESQ_SENHA"] = senha
+    try:
+        coletor.run_bot()
+    except Exception as e:
+        print(f"[ERRO] Coleta SIGPESQ: {e}")
+    try:
+        coletor.run_editais()
+    except Exception as e:
+        print(f"[ERRO] Coleta editais: {e}")
+    print("[OK] Coleta automática inicial concluída.")
+
+
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
-    parser.add_argument("--publico", action="store_true",
-                        help="Permite acesso da rede externa (default: só localhost)")
+    parser.add_argument("--semi-publico", action="store_true",
+                        help="Permite acesso da rede local (default: só localhost)")
+    parser.add_argument("--skip-coleta", action="store_true",
+                        help="Não dispara coleta automática ao iniciar")
     args = parser.parse_args()
 
-    host = "0.0.0.0" if args.publico else HOST_PULL
+    # Por padrão 0.0.0.0 para que o dashboard fique acessível na rede local do campus
+    host = "0.0.0.0" if args.semi_publico else HOST_PULL
 
     cpf_config, senha_config = pedir_credenciais()
 
@@ -192,9 +211,16 @@ if __name__ == "__main__":
     print()
     print(f"Servidor rodando em http://{host}:{PORT}")
     print(f"Dashboard: http://{host}:{PORT}/")
-    print(f"Para rede externa use: python3 server.py --publico")
+    print("Para rede externa (acesso pela rede): python3 server.py --semi-publico")
+    print("Para pular a coleta inicial: python3 server.py --skip-coleta")
     print(f"Pressione Ctrl+C para parar")
     print()
+
+    # Inicia a coleta automática em segundo plano (não bloqueia o servidor)
+    if not args.skip_coleta:
+        t = threading.Thread(target=rodar_eventual_rodar, args=(cpf_config, senha_config), daemon=True)
+        t.start()
+        print("[INFO] Coleta automática iniciada em segundo plano...")
 
     server = http.server.HTTPServer((host, PORT), Handler)
     try:

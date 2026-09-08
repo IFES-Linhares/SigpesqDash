@@ -20,8 +20,8 @@
   {
     "agencia": "FAPES",
     "titulo": "EDITAL FAPES Nº 19/2026 - PIC JR 2027",
-    "prazoFim": "2026-09-09",
-    "prazoTexto": "09/09/2026",
+    "prazoFim": "2026-09-21",
+    "prazoTexto": "21/09/2026",
     "situacao": "Aberto",
     "url": "https://fapes.es.gov.br/Media/fapes/Editais/PIC_JR_2027%20-.pdf",
     "fonte": "https://fapes.es.gov.br/"
@@ -159,6 +159,15 @@
     "prazoTexto": "2026-09-18",
     "situacao": "Aberto",
     "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-13-2026/chamada-publica-cnpq-N-13-2026",
+    "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
+  },
+  {
+    "agencia": "CNPq",
+    "titulo": "Chamada Pública MCTI/CNPq/ANR N° 32/2026",
+    "prazoFim": "2026-09-18",
+    "prazoTexto": "2026-09-18",
+    "situacao": "Aberto",
+    "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-32-2026/chamada-publica-cnpq-N-32-2026",
     "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
   },
   {

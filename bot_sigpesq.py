@@ -180,6 +180,7 @@ def login(page, cpf, senha):
     page.fill('#txtLogin', cpf)
 
     print("[INFO] Preenchendo senha...")
+    print(f"[DEBUG] senha recebida: len={len(senha)} último_char={senha[-1:]!r} contém_$={'$' in senha}")
     page.fill('#txtSenha', senha)
 
     print("[INFO] Clicando em Entrar...")
