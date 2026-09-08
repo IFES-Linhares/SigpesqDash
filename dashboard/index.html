@@ -556,12 +556,11 @@
                                 <th onclick="sortTableGrupos(1)">Líder ↕</th>
                                 <th onclick="sortTableGrupos(2)">Campus ↕</th>
                                 <th onclick="sortTableGrupos(3)">Área ↕</th>
-                                <th onclick="sortTableGrupos(4)">Ano Início ↕</th>
-                                <th onclick="sortTableGrupos(5)">Situação ↕</th>
+                                <th onclick="sortTableGrupos(4)">Situação ↕</th>
                             </tr>
                         </thead>
                         <tbody id="tableBodyGrupos">
-                            <tr><td colspan="6" style="text-align:center; color:var(--text-muted); padding:40px">Carregando grupos...</td></tr>
+                            <tr><td colspan="5" style="text-align:center; color:var(--text-muted); padding:40px">Carregando grupos...</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -778,7 +777,7 @@
                 popularFiltros();
                 aplicarFiltros();
                 renderActivityFeed(projetos);
-                initCharts(projetos);
+                try { initCharts(projetos); } catch (ec) { console.error('Erro ao renderizar gráficos:', ec); }
                 renderRelatorio();
 
                 if (grupos.length > 0) {
@@ -1151,7 +1150,7 @@
         function renderTableGrupos(data) {
             const tbody = document.getElementById('tableBodyGrupos');
             if (!data.length) {
-                tbody.innerHTML = '<tr><td colspan="6" style="text-align:center;color:var(--text-muted);padding:40px">Nenhum grupo cadastrado</td></tr>';
+                tbody.innerHTML = '<tr><td colspan="5" style="text-align:center;color:var(--text-muted);padding:40px">Nenhum grupo cadastrado</td></tr>';
                 return;
             }
             tbody.innerHTML = data.map(g => `
@@ -1160,7 +1159,6 @@
                     <td>${g.lider || '-'}</td>
                     <td>${g.campus || '-'}</td>
                     <td>${g.area || '-'}</td>
-                    <td>${g.anoInicio || '-'}</td>
                     <td><span class="status-pill" style="background:${g.situacao === 'Ativo' ? '#10b98120; color:#10b981' : '#ef444420; color:#ef4444'}">${g.situacao || '-'}</span></td>
                 </tr>
             `).join('');
@@ -1169,7 +1167,7 @@
         let sortDirGrupos = false;
         function sortTableGrupos(colIndex) {
             sortDirGrupos = !sortDirGrupos;
-            const keys = ['nome', 'lider', 'campus', 'area', 'anoInicio', 'situacao'];
+            const keys = ['nome', 'lider', 'campus', 'area', 'situacao'];
             const key = keys[colIndex];
             dadosFiltradosGrupos.sort((a, b) => {
                 const va = a[key] || '';
