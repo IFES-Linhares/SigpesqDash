@@ -15,8 +15,10 @@ from playwright.sync_api import sync_playwright
 PASTA_BASE = Path(__file__).parent
 PASTA_DADOS = PASTA_BASE / "dados"
 PASTA_PUBLICA = PASTA_BASE / "docs"
+PASTA_DASHBOARD = PASTA_BASE / "dashboard"
 PASTA_DADOS.mkdir(exist_ok=True)
 PASTA_PUBLICA.mkdir(exist_ok=True)
+PASTA_DASHBOARD.mkdir(exist_ok=True)
 
 
 def br_para_iso(data_br):
@@ -273,7 +275,7 @@ def main():
 def salvar_editais_no_final(editais):
     path_pub = PASTA_PUBLICA / "editais.json"
     path_int = PASTA_DADOS / "editais.json"
-    for p in (PASTA_PUBLICA, PASTA_DADOS):
+    for p in (PASTA_PUBLICA, PASTA_DADOS, PASTA_DASHBOARD):
         p.mkdir(exist_ok=True)
         with open(p / "editais.json", "w", encoding="utf-8") as f:
             json.dump(editais, f, ensure_ascii=False, indent=2)
