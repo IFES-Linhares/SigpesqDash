@@ -1,0 +1,48 @@
+name: Coleta diaria de dados
+
+on:
+  schedule:
+    - cron: '0 9 * * *'   # 09:00 UTC = 06:00 em Brasília (ajustável)
+  workflow_dispatch:      # permite rodar manual pela aba "Actions"
+
+permissions:
+  contents: write          # autoriza o workflow a commitar/empurrar docs/
+
+jobs:
+  coletar:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout do repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Instalar dependencias e navegador (chromium)
+        run: |
+          pip install -r requirements.txt
+          playwright install --with-deps chromium
+
+      - name: Coletar dados (SIGPESQ + editais)
+        env:
+          SIGPESQ_CPF: ${{ secrets.SIGPESQ_CPF }}
+          SIGPESQ_SENHA: ${{ secrets.SIGPESQ_SENHA }}
+          SIGPESQ_HEADLESS: "1"
+        run: python coletor.py
+
+      - name: Publicar docs/ somente se houver mudancas
+        env:
+          BOT_EMAIL: sigpesqbot@users.noreply.github.com
+          BOT_NAME: sigpesq-bot
+        run: |
+          git config user.email "$BOT_EMAIL"
+          git config user.name "$BOT_NAME"
+          git add docs/
+          if git diff --cached --quiet; then
+            echo "Nenhuma mudanca em docs/. Nada a publicar."
+          else
+            git commit -m "chore(auto): atualizacao diaria dos dados - $(date -u '+%d/%m/%Y %H:%M') UTC"
+            git push
+          fi
