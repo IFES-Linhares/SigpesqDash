@@ -109,18 +109,6 @@
   },
   {
     "anoInicio": "2026",
-    "id": "PJ 9602",
-    "nome": "Estudo Comparativo entre PLA e PET reciclado para impressão 3D através de caracterização mecânica",
-    "coordenador": "FRANCISCO ANDSON MARQUES",
-    "campusLotacao": "Linhares",
-    "campusExecucao": "Linhares",
-    "area": "Engenharia Mecânica",
-    "financiamentos": "0",
-    "atualizadoEm": "28/05/2026 21:43:49",
-    "parecer": "Aprovado"
-  },
-  {
-    "anoInicio": "2026",
     "id": "PJ 9545",
     "nome": "Desenvolvimento de uma ferramenta de correção automatizada de resumos manuscritos baseada em modelos multimodais de linguagem",
     "coordenador": "Lucas Vago Santana",
@@ -212,8 +200,8 @@
     "campusExecucao": "Linhares",
     "area": "Educação",
     "financiamentos": "5",
-    "atualizadoEm": "30/06/2026 14:01:34",
-    "parecer": "Salvo"
+    "atualizadoEm": "10/09/2026 20:36:57",
+    "parecer": "Aprovação Solicitada"
   },
   {
     "anoInicio": "2026",
@@ -451,8 +439,8 @@
     "campusLotacao": "Linhares",
     "campusExecucao": "Linhares",
     "area": "Engenharia Mecânica",
-    "financiamentos": "0",
-    "atualizadoEm": "31/08/2026 17:25:07",
+    "financiamentos": "2",
+    "atualizadoEm": "10/09/2026 17:11:33",
     "parecer": "Aprovado"
   },
   {
