@@ -37,6 +37,15 @@
   },
   {
     "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 21/2026 - REDES DE PESQUISA, DESENVOLVIMENTO E INOVAÇÃO EM SETORES ESTRATÉGICOS",
+    "prazoFim": "2026-09-21",
+    "prazoTexto": "21/09/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital%20Fapes%2021-2026%20-%20Redes%20de%20PDI%20em%20Setores%20Estrat%C3%A9gicos%20aprovada%201altera%C3%A7%C3%A3o.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
     "titulo": "EDITAL FAPES/CNPQ/CAPES Nº 22/2026 - PROFIX-CB",
     "prazoFim": "2026-10-01",
     "prazoTexto": "01/10/2026",
@@ -69,6 +78,15 @@
     "prazoTexto": "08/10/2026",
     "situacao": "Aberto",
     "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital_Fapes_25-2026_Ci%C3%AAncia_Aberta_Capixaba.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 28/2025 - PUBLICAÇÃO DE ARTIGOS TÉCNICO-CIENTÍFICOS",
+    "prazoFim": "2026-10-26",
+    "prazoTexto": "26/10/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital_Fapes_28_2025_Publica%C3%A7%C3%A3o_de_Artigos_T%C3%A9cnico-Cient%C3%ADficos_retificado.pdf",
     "fonte": "https://fapes.es.gov.br/"
   },
   {
