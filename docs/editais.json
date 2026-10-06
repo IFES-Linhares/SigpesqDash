@@ -1,5 +1,59 @@
 [
   {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 08/2026 – NOVA ECONOMIA CAPIXABA 2026",
+    "prazoFim": "",
+    "prazoTexto": "Fluxo contínuo",
+    "situacao": "Fluxo contínuo",
+    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital_08-2026_-_Nova_Economia_Capixaba_-_2_Edi%C3%A7%C3%A3o_-_Lan%C3%A7amento.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 24/2026 - PRIMEIROS PROJETOS DE PESQUISA - ESPÍRITO SANTO (PPP-ES)",
+    "prazoFim": "2026-09-30",
+    "prazoTexto": "30/09/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital%20Fapes%2024-2026%20PPP-ES.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 25/2026 - CIÊNCIA ABERTA CAPIXABA",
+    "prazoFim": "2026-10-08",
+    "prazoTexto": "08/10/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital_Fapes_25-2026_Ci%C3%AAncia_Aberta_Capixaba.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 28/2025 - PUBLICAÇÃO DE ARTIGOS TÉCNICO-CIENTÍFICOS",
+    "prazoFim": "2026-10-26",
+    "prazoTexto": "26/10/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital_Fapes_28_2025_Publica%C3%A7%C3%A3o_de_Artigos_T%C3%A9cnico-Cient%C3%ADficos_retificado.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "CHAMADA HORIZON EUROPE",
+    "prazoFim": "2027-12-31",
+    "prazoTexto": "31/12/2027",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Diretrizes_Fapes_Horizon_Europe_2021-2027-DITEC_-_16-09-25.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "CHAMADA CONFAP CDTI 2026",
+    "prazoFim": "2026-10-08",
+    "prazoTexto": "08/10/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/Media/Editais/Postagem%20-%20CONFAP%20e%20CDTI%20lan%C3%A7am%20chamada%202026-2027.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
     "agencia": "CNPq",
     "titulo": "Chamada Pública CNPq/CAPES Nº 30/2026 – Programa de Mestrado e Doutorado Acadêmico para Inovação – MAI/DAI",
     "prazoFim": "2026-12-11",
