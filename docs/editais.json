@@ -10,18 +10,9 @@
   },
   {
     "agencia": "FAPES",
-    "titulo": "EDITAL FAPES Nº 24/2026 - PRIMEIROS PROJETOS DE PESQUISA - ESPÍRITO SANTO (PPP-ES)",
-    "prazoFim": "2026-09-30",
-    "prazoTexto": "30/09/2026",
-    "situacao": "Aberto",
-    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital%20Fapes%2024-2026%20PPP-ES.pdf",
-    "fonte": "https://fapes.es.gov.br/"
-  },
-  {
-    "agencia": "FAPES",
     "titulo": "EDITAL FAPES Nº 25/2026 - CIÊNCIA ABERTA CAPIXABA",
-    "prazoFim": "2026-10-08",
-    "prazoTexto": "08/10/2026",
+    "prazoFim": "2026-10-15",
+    "prazoTexto": "15/10/2026",
     "situacao": "Aberto",
     "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital_Fapes_25-2026_Ci%C3%AAncia_Aberta_Capixaba.pdf",
     "fonte": "https://fapes.es.gov.br/"
@@ -69,6 +60,15 @@
     "prazoTexto": "2026-12-11",
     "situacao": "Aberto",
     "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-32-2026/chamada-publica-cnpq-N-32-2026",
+    "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
+  },
+  {
+    "agencia": "CNPq",
+    "titulo": "Chamada CNPq nº 33/2026 - Bolsas de Produtividade do CNPq",
+    "prazoFim": "2026-12-11",
+    "prazoTexto": "2026-12-11",
+    "situacao": "Aberto",
+    "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-33-2026/chamada-publica-cnpq-N-33-2026",
     "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
   },
   {
