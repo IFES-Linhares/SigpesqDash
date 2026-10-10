@@ -49,7 +49,7 @@ Repositório: [IFES-Linhares/SigpesqDash](https://github.com/IFES-Linhares/Sigpe
 
 - Arquivo: `.github/workflows/coleta.yml`.
 - **Secrets necessários** (Settings → Secrets and variables → Actions):
-  - `SIGPESQ_CPF` e `SIGPESQ_SENHA` (credenciais do SIGPESQ; a senha é gravada literalmente, ex.: `HAgs3001$$`).
+  - `SIGPESQ_CPF` e `SIGPESQ_SENHA` (credenciais do SIGPESQ; a senha é gravada literalmente, ex.: `$`).
 - Disparos: cron diário + `workflow_dispatch` (manual).
 - Publica `docs/` usando `GITHUB_TOKEN` (sem expor PAT).
 
