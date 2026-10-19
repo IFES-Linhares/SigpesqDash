@@ -1,6 +1,15 @@
 [
   {
     "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 01/2026 – TCC EMPREENDEDOR INOVADOR - 2ª CHAMADA",
+    "prazoFim": "2026-10-27",
+    "prazoTexto": "27/10/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/EDITAL_FAPES_N%C2%BA_01.2026_TCC_EMPREENDEDOR_INOVADOR-2.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
     "titulo": "EDITAL FAPES Nº 08/2026 – NOVA ECONOMIA CAPIXABA 2026",
     "prazoFim": "",
     "prazoTexto": "Fluxo contínuo",
@@ -10,11 +19,20 @@
   },
   {
     "agencia": "FAPES",
-    "titulo": "EDITAL FAPES Nº 25/2026 - CIÊNCIA ABERTA CAPIXABA",
-    "prazoFim": "2026-10-15",
-    "prazoTexto": "15/10/2026",
+    "titulo": "EDITAL FAPES Nº 26/2026 PROGRAMA DE CAPACITAÇÃO DE RECURSOS HUMANOS NA PÓS GRADUAÇÃO - MESTRADO",
+    "prazoFim": "2026-11-16",
+    "prazoTexto": "16/11/2026",
     "situacao": "Aberto",
-    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital_Fapes_25-2026_Ci%C3%AAncia_Aberta_Capixaba.pdf",
+    "url": "https://fapes.es.gov.br/media/Editais/procap-2027-mestrado.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 27/2026 - PROGRAMA DE CAPACITAÇÃO DE RECURSOS HUMANOS NA PÓS-GRADUAÇÃO (PROCAP 2027 - DOUTORADO)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/procap-2027-doutorado.pdf",
     "fonte": "https://fapes.es.gov.br/"
   },
   {
@@ -33,15 +51,6 @@
     "prazoTexto": "31/12/2027",
     "situacao": "Aberto",
     "url": "https://fapes.es.gov.br/Media/fapes/Editais/Diretrizes_Fapes_Horizon_Europe_2021-2027-DITEC_-_16-09-25.pdf",
-    "fonte": "https://fapes.es.gov.br/"
-  },
-  {
-    "agencia": "FAPES",
-    "titulo": "CHAMADA CONFAP CDTI 2026",
-    "prazoFim": "2026-10-08",
-    "prazoTexto": "08/10/2026",
-    "situacao": "Aberto",
-    "url": "https://fapes.es.gov.br/Media/Editais/Postagem%20-%20CONFAP%20e%20CDTI%20lan%C3%A7am%20chamada%202026-2027.pdf",
     "fonte": "https://fapes.es.gov.br/"
   },
   {
