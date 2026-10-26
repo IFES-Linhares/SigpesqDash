@@ -100,9 +100,18 @@
   },
   {
     "agencia": "CNPq",
+    "titulo": "Chamada Pública CNPq/Petrobras N° 31/2026 - Projeto InspirAÇÃO",
+    "prazoFim": "2026-12-08",
+    "prazoTexto": "2026-12-08",
+    "situacao": "Aberto",
+    "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-31-2026/chamada-publica-cnpq-N-31-2026",
+    "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
+  },
+  {
+    "agencia": "CNPq",
     "titulo": "Chamada Pública CNPq/CAPES Nº 30/2026 – Programa de Mestrado e Doutorado Acadêmico para Inovação – MAI/DAI",
-    "prazoFim": "2026-12-11",
-    "prazoTexto": "2026-12-11",
+    "prazoFim": "2026-12-08",
+    "prazoTexto": "2026-12-08",
     "situacao": "Aberto",
     "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-30-2026/chamada-publica-cnpq-N-30-2026",
     "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
@@ -110,8 +119,8 @@
   {
     "agencia": "CNPq",
     "titulo": "Chamada CNPq Nº 34/2026 - Auxílio à Promoção de Eventos Científicos, Tecnológicos e/ou de Inovação - ARC",
-    "prazoFim": "2026-12-11",
-    "prazoTexto": "2026-12-11",
+    "prazoFim": "2026-12-08",
+    "prazoTexto": "2026-12-08",
     "situacao": "Aberto",
     "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-34-2026/chamada-publica-cnpq-N-34-2026",
     "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
@@ -119,8 +128,8 @@
   {
     "agencia": "CNPq",
     "titulo": "Chamada Pública MCTI/CNPq/ANR N° 32/2026",
-    "prazoFim": "2026-12-11",
-    "prazoTexto": "2026-12-11",
+    "prazoFim": "2026-12-08",
+    "prazoTexto": "2026-12-08",
     "situacao": "Aberto",
     "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-32-2026/chamada-publica-cnpq-N-32-2026",
     "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
@@ -128,8 +137,8 @@
   {
     "agencia": "CNPq",
     "titulo": "Chamada CNPq nº 33/2026 - Bolsas de Produtividade do CNPq",
-    "prazoFim": "2026-12-11",
-    "prazoTexto": "2026-12-11",
+    "prazoFim": "2026-12-08",
+    "prazoTexto": "2026-12-08",
     "situacao": "Aberto",
     "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-33-2026/chamada-publica-cnpq-N-33-2026",
     "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
@@ -348,15 +357,6 @@
     "prazoTexto": "",
     "situacao": "Aberto",
     "url": "https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/educacao-basica/programa-de-apoio-a-eventos-no-pais-para-a-educacao-basica-paep-eb",
-    "fonte": "https://www.gov.br/capes/pt-br/assuntos/editais-e-resultados-capes"
-  },
-  {
-    "agencia": "CAPES",
-    "titulo": "Programas, Projetos, Ações, Obras e Atividades",
-    "prazoFim": "",
-    "prazoTexto": "",
-    "situacao": "Aberto",
-    "url": "https://www.gov.br/capes/pt-br/acesso-a-informacao/programas-projetos-acoes-obras-e-atividades",
     "fonte": "https://www.gov.br/capes/pt-br/assuntos/editais-e-resultados-capes"
   }
 ]
