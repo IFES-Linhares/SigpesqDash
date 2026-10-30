@@ -1,5 +1,167 @@
 [
   {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 17/2026 - PRÊMIO FAPES DE CIÊNCIA - TECNOLOGIA - INOVAÇÃO E JORNALISMO (FINAL)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Resultados/resultado_final_17_2026_-_premio_fapes-27outubro2026.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 24/2026 - PRIMEIROS PROJETOS DE PESQUISA (HABILITAÇÃO)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Resultados/edital_fapes_24_2026_ppp-es_resultado_final_habilitacao.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 21/2026 - REDES DE PESQUISA - DESENVOLVIMENTO E INOVAÇÃO EM SETORES ESTRATÉGICOS (HABILITAÇÃO)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Resultados/edital_fapes_21_2026_redes_em_pd-i_resultado_final_habilitacao.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 05/2026 - VISITA TÉCNICO-CIENTÍFICA (FINAL)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Resultados/edital_fapes_05_2026_visita_tecnico_cientifica_3a_ch-_resultado_final.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 04/2026 - ESTÁGIO TÉCNICO-CIENTÍFICO (FINAL)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Resultados/edital_fapes_estagio_tecnico_cientifico_3a_chamada_resultado_final.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 03/2026 - ORGANIZAÇÃO DE EVENTOS TÉCNICO-CIENTÍFICOS (FINAL)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Resultados/edital_03_2026_-_organizacao_de_eventos_tecnico-cientificos_-_3a_chamada_-_resultado_final.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 02/2026 - PARTICIPAÇÃO EM EVENTOS TÉCNICO-CIENTÍFICOS (FINAL)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Resultados/edital_02_2026_-_participacao_em_eventos_tecnico-cientificos_-3a_chamada-resultado_final.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 01/2026 – TCC EMPREENDEDOR INOVADOR",
+    "prazoFim": "2026-10-27",
+    "prazoTexto": "27/10/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/EDITAL_FAPES_N%C2%BA_01.2026_TCC_EMPREENDEDOR_INOVADOR-2.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 10/2026 – DR. EMPREENDEDOR CAPIXABA",
+    "prazoFim": "2026-12-15",
+    "prazoTexto": "15/12/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Portif%C3%B3lios/edital_fapes_no_10-2026_-_dr-_empreendedor_capixaba_-_1a_alteracao_.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 26/2026 – PROCAP MESTRADO",
+    "prazoFim": "2026-11-16",
+    "prazoTexto": "16/11/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/procap-2027-mestrado.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 27/2026 – PROCAP DOUTORADO",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/procap-2027-doutorado.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 28/2025 - PUBLICAÇÃO DE ARTIGOS TÉCNICO-CIENTÍFICOS",
+    "prazoFim": "2026-10-26",
+    "prazoTexto": "26/10/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Edital_Fapes_28_2025_Publica%C3%A7%C3%A3o_de_Artigos_T%C3%A9cnico-Cient%C3%ADficos_retificado.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "CHAMADA TRANSNACIONAL CONJUNTA FOREST 2026 (FOREST PATHWAYS)",
+    "prazoFim": "2026-12-02",
+    "prazoTexto": "02/12/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/diretrizes-forest-pathways-2026.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "CHAMADA TRANSNACIONAL CONJUNTA BIODIVERSA+ (BIODIVFUTURE) 2026-2027",
+    "prazoFim": "2026-11-10",
+    "prazoTexto": "10/11/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/diretrizes-biodiversa-2026.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "CHAMADA TRANSNACIONAL CONJUNTA CONFAP & WATER4ALL 2026",
+    "prazoFim": "2026-11-10",
+    "prazoTexto": "10/11/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/Diretrizes%20W4ALL.2026.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "CHAMADA CONFAP WBI - BÉLGICA 2026",
+    "prazoFim": "2026-10-30",
+    "prazoTexto": "30/10/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/diretrizes-fapes-wbi-2026-alteracao.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "CHAMADA TRANSNACIONAL CONJUNTA DA PARCERIA DE ECONOMIA AZUL SUSTENTAVEL (SBEP) 2026",
+    "prazoFim": "2026-11-16",
+    "prazoTexto": "16/11/2026",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Portif%C3%B3lios/diretrizes-da-fapes-chamada-sbep-2026.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "CHAMADA HORIZON EUROPE",
+    "prazoFim": "2027-12-31",
+    "prazoTexto": "31/12/2027",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/Media/fapes/Editais/Diretrizes_Fapes_Horizon_Europe_2021-2027-DITEC_-_16-09-25.pdf",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
     "agencia": "CNPq",
     "titulo": "Chamada Pública CNPq/Petrobras N° 31/2026 - Projeto InspirAÇÃO",
     "prazoFim": "2026-12-08",
