@@ -277,5 +277,14 @@
     "situacao": "Aberto",
     "url": "https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/educacao-basica/programa-de-apoio-a-eventos-no-pais-para-a-educacao-basica-paep-eb",
     "fonte": "https://www.gov.br/capes/pt-br/assuntos/editais-e-resultados-capes"
+  },
+  {
+    "agencia": "CAPES",
+    "titulo": "Programas, Projetos, Ações, Obras e Atividades",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://www.gov.br/capes/pt-br/acesso-a-informacao/programas-projetos-acoes-obras-e-atividades",
+    "fonte": "https://www.gov.br/capes/pt-br/assuntos/editais-e-resultados-capes"
   }
 ]
