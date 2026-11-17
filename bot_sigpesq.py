@@ -415,38 +415,77 @@ def detectar_total_paginas(page):
     return 1
 
 
-def ir_para_pagina(page, numero):
-    """Navega para a página N do GridView (com fallback de postback)."""
+def _faixa_projetos(page):
+    """Retorna (início, fim, total) do texto 'Mostrando de X até Y de Z'."""
     try:
-        link = page.query_selector(f"a[href*='Page${numero}']")
-        if not link:
-            print(f"[AVISO] Link 'Page${numero}' não encontrado; tentando 'Último'")
-            link = page.query_selector("a[href*='Page$Last']")
-            if not link:
-                return False
+        texto = page.inner_text("#ContentPlaceHolder_gvwLista")
+        m = re.search(r"Mostrando de (\d+) até (\d+) de (\d+)", texto)
+        if m:
+            return tuple(int(g) for g in m.groups())
+    except Exception:
+        pass
+    return None
 
-        try:
-            link.scroll_into_view_if_needed(timeout=5000)
-        except Exception:
-            pass
 
-        try:
-            link.click(timeout=10000)
-        except Exception as e:
-            # Fallback: dispara o __doPostBack do href diretamente
-            href = link.get_attribute("href") or ""
-            m = re.search(r"__doPostBack\('([^']*)','([^']*)'\)", href)
-            if not m:
-                raise
-            print(f"[AVISO] Clique bloqueado ({e}); disparando postback via JS")
-            page.evaluate("([t, a]) => __doPostBack(t, a)", [m.group(1), m.group(2)])
+def _clicar_paginacao(page, numero):
+    """Clica no link da página (ou dispara o postback, se o clique for bloqueado)."""
+    link = page.query_selector(f"a[href*='Page${numero}']")
+    if not link:
+        link = page.query_selector("a[href*='Page$Last']")
+    if not link:
+        return False
 
-        page.wait_for_load_state("networkidle", timeout=20000)
-        page.wait_for_timeout(600)
+    try:
+        link.scroll_into_view_if_needed(timeout=5000)
+    except Exception:
+        pass
+
+    try:
+        link.click(timeout=8000)
         return True
     except Exception as e:
-        print(f"[AVISO] Falha ao ir para página {numero}: {e}")
-        return False
+        href = link.get_attribute("href") or ""
+        m = re.search(r"__doPostBack\('([^']*)','([^']*)'\)", href)
+        if not m:
+            print(f"[AVISO] Clique na paginação falhou: {e}")
+            return False
+        print(f"[AVISO] Clique bloqueado ({e}); disparando postback via JS")
+        try:
+            page.evaluate("([t, a]) => __doPostBack(t, a)", [m.group(1), m.group(2)])
+            return True
+        except Exception as e2:
+            print(f"[AVISO] Postback da paginação falhou: {e2}")
+            return False
+
+
+def ir_para_pagina(page, numero):
+    """Navega para a página N e confirma que a faixa de registros realmente mudou.
+
+    O postback do GridView é assíncrono e às vezes o clique não surte efeito;
+    sem essa confirmação o coletor relia a mesma página e perdia projetos.
+    """
+    antes = _faixa_projetos(page)
+    esperado = (numero - 1) * 10 + 1
+
+    for tentativa in range(1, 4):
+        if not _clicar_paginacao(page, numero):
+            return False
+
+        try:
+            page.wait_for_load_state("networkidle", timeout=20000)
+        except PWTimeout:
+            pass
+
+        for _ in range(25):
+            agora = _faixa_projetos(page)
+            if agora and (agora[0] == esperado or (antes and agora[0] != antes[0])):
+                return True
+            page.wait_for_timeout(300)
+
+        antes = _faixa_projetos(page) or antes
+        print(f"[AVISO] Página {numero} não confirmou (tentativa {tentativa})")
+
+    return False
 
 
 def _coletar_lista_projetos(page):
