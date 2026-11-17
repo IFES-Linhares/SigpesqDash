@@ -36,7 +36,7 @@ def executar_bot(cpf, senha):
             env=env,
             capture_output=True,
             text=True,
-            timeout=600,   # Com 121 projetos coletados, disponível o suficiente
+            timeout=1800,  # Vigência abre um modal por projeto; folga para muitas páginas
         )
         print(f"[BOT] stdout: {resultado.stdout}")
         if resultado.stderr:

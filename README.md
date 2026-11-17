@@ -10,11 +10,14 @@ Repositório: [IFES-Linhares/SigpesqDash](https://github.com/IFES-Linhares/Sigpe
 
 1. **Coleta automática**
    - `bot_sigpesq.py` — loga no SIGPESQ (login com CPF/senha via Playwright) e extrai projetos e grupos.
+     A **vigência** (`inicio`/`fim`) de cada projeto é lida no modal "Visualizar" da listagem
+     (o SIGPESQ não mostra as datas na tabela). Para pular essa etapa, use `SIGPESQ_VIGENCIA=0`.
    - `coletor_editais.py` — baixa editais públicos de FAPES, CNPq (via Playwright) e FINEP (via API/requests).
    - `coletor.py` — orquestra tudo (`full`, `--bot`, `--edit`).
 
 2. **Gera dados estruturados**
    - `docs/dados.json`, `docs/grupos.json`, `docs/editais.json`, `docs/meta.json` (públicos).
+   - Cada projeto traz `inicio` e `fim` (vigência, `dd/mm/aaaa`), além de `anoInicio`, `parecer` etc.
    - `dados/` e `dashboard/` (internos, ignorados pelo git).
 
 3. **Publica um site estático**
@@ -38,6 +41,26 @@ Repositório: [IFES-Linhares/SigpesqDash](https://github.com/IFES-Linhares/Sigpe
 - Preview do site: `python3 server.py` (abre http://127.0.0.1:8080 e coleta no início; use `--skip-coleta` para pular).
 - Coletar tudo: `python3 coletor.py`
 - Só SIGPESQ: `python3 coletor.py --bot` | Só editais: `python3 coletor.py --edit`
+- Só projetos/grupos, sem abrir o modal de vigência (mais rápido): `SIGPESQ_VIGENCIA=0 python3 coletor.py --bot`
+
+A coleta salva os dados **somente se** vier pelo menos metade dos projetos já publicados.
+Se o SIGPESQ retornar uma lista muito menor (falha de paginação), nada é sobrescrito;
+para forçar mesmo assim, use `SIGPESQ_FORCAR_SALVAR=1`.
+
+## Consultar projetos por vigência
+
+Na aba **Projetos** há a coluna **Vigência** (situação + período) e o filtro **Vigência**:
+
+| Situação | Regra |
+| --- | --- |
+| Em andamento | hoje entre `inicio` e `fim` (ou sem data de término) |
+| A iniciar | `inicio` no futuro |
+| Finalizado | `fim` já passou |
+| Sem informação | projeto sem as datas no SIGPESQ |
+
+Os KPIs **Em Andamento** e **Finalizados** (no Dashboard) funcionam como atalhos: ao clicar,
+a tabela já abre filtrada. O CSV exportado também inclui `Inicio Vigencia`, `Fim Vigencia`
+e `Situacao Vigencia`, e o Relatório traz a contagem por situação.
 
 ## Publicação (Rota A — GitHub Pages)
 

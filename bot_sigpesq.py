@@ -1,6 +1,7 @@
 import csv
 import json
 import os
+import re
 import shutil
 import sys
 from datetime import datetime
@@ -35,6 +36,17 @@ PASTA_PUBLICA.mkdir(exist_ok=True)
 
 # Headless por padrão; defina SIGPESQ_HEADLESS=0 para ver o navegador
 HEADLESS = os.environ.get("SIGPESQ_HEADLESS", "1") != "0"
+
+# Modal "Visualizar projeto" (btnResumoProjeto) — única tela que expõe a
+# vigência do projeto (campos Início/Fim) na lista da unidade
+SEL_MODAL_CODIGO = "#ContentPlaceHolder_ModalConsultaProjeto_Consulta_Projeto_lblCodigo"
+SEL_MODAL_INICIO = "#ContentPlaceHolder_ModalConsultaProjeto_Consulta_Projeto_lblInicio"
+SEL_MODAL_FIM = "#ContentPlaceHolder_ModalConsultaProjeto_Consulta_Projeto_lblFim"
+SEL_MODAL_FECHAR = "#ContentPlaceHolder_ModalConsultaProjeto_btnModal_Fechar"
+SEL_MODAL_PAINEL = "#ContentPlaceHolder_ModalConsultaProjeto_pnlModal"
+
+# Abre um modal por projeto; pode ser desativado com SIGPESQ_VIGENCIA=0
+COLETAR_VIGENCIA = os.environ.get("SIGPESQ_VIGENCIA", "1") != "0"
 
 # Colunas da tabela de projetos da unidade (listaUnidade.aspx)
 # Índices das <td> dentro de cada <tr> de dados
@@ -100,7 +112,27 @@ def salvar_dados(projetos, grupos, dashboard=None, unidade=None):
     """Salva projetos, grupos e metadados nos formatos interno (dados/) e público (docs/)."""
     if not projetos and not grupos:
         print("[AVISO] Nenhum dado para salvar")
-        return
+        return False
+
+    # Sanidade: evita sobrescrever os dados públicos com uma coleta parcial
+    anterior = 0
+    arquivo_publico = PASTA_PUBLICA / "dados.json"
+    if arquivo_publico.exists():
+        try:
+            anterior = len(json.loads(arquivo_publico.read_text(encoding="utf-8")))
+        except Exception:
+            anterior = 0
+    if (
+        anterior
+        and len(projetos) < anterior * 0.5
+        and os.environ.get("SIGPESQ_FORCAR_SALVAR") != "1"
+    ):
+        print(
+            f"[ERRO] A coleta retornou {len(projetos)} projetos, menos da metade dos "
+            f"{anterior} já publicados. Nada foi salvo para não degradar o site "
+            f"(use SIGPESQ_FORCAR_SALVAR=1 para forçar)."
+        )
+        return False
 
     total_veículos = len(projetos)
     total_grupos = len(grupos)
@@ -159,6 +191,8 @@ def salvar_dados(projetos, grupos, dashboard=None, unidade=None):
         with open(resumo_path, "w", encoding="utf-8") as f:
             json.dump(dashboard, f, ensure_ascii=False, indent=2)
         print(f"[OK] Resumo do dashboard salvo em {resumo_path}")
+
+    return True
 
 
 def login(page, cpf, senha):
@@ -261,6 +295,109 @@ def extrair_pagina_projetos(page):
     return resultados
 
 
+def _texto(page, seletor):
+    """inner_text tolerante a elemento ausente."""
+    el = page.query_selector(seletor)
+    return el.inner_text().strip() if el else ""
+
+
+def codigos_pagina(page):
+    """Códigos (PJ xxxx) das linhas visíveis na página atual da gvwLista."""
+    tabela = page.query_selector("#ContentPlaceHolder_gvwLista")
+    if not tabela:
+        return []
+
+    codigos = []
+    for linha in tabela.query_selector_all("tr")[1:]:
+        colunas = linha.query_selector_all("td")
+        if len(colunas) < 13:
+            continue
+        texto = linha.inner_text()
+        if "Mostrando de" in texto or "registro(s)" in texto:
+            continue
+        codigos.append(colunas[3].inner_text().strip())
+    return codigos
+
+
+def _fechar_modal(page):
+    """Fecha o modal de consulta e espera ele sumir (evita bloquear a paginação)."""
+    try:
+        fechar = page.query_selector(SEL_MODAL_FECHAR)
+        if fechar and fechar.is_visible():
+            fechar.click(timeout=5000)
+    except Exception:
+        pass
+    try:
+        page.wait_for_selector(SEL_MODAL_PAINEL, state="hidden", timeout=5000)
+    except Exception:
+        try:
+            page.keyboard.press("Escape")
+            page.wait_for_timeout(300)
+        except Exception:
+            pass
+
+
+def coletar_vigencia_pagina(page, projetos_pagina, numero_pagina=1):
+    """Lê Início/Fim de cada projeto da página abrindo o modal 'Visualizar'.
+
+    O SIGPESQ não mostra as datas de vigência na listagem; elas só aparecem no
+    modal de resumo do projeto (postback por linha). Os valores são gravados
+    nos próprios dicionários de ``projetos_pagina``, casando pelo código do
+    projeto (o postback pode devolver uma linha diferente da esperada).
+    """
+    if not COLETAR_VIGENCIA or not projetos_pagina:
+        return
+
+    def normalizar(valor):
+        return str(valor or "").replace(" ", "").upper()
+
+    por_codigo = {normalizar(p.get("id")): p for p in projetos_pagina if p.get("id")}
+    codigos = codigos_pagina(page)
+    print(f"[INFO] Vigência: {len(projetos_pagina)} projeto(s) na pág {numero_pagina}...")
+
+    for indice, codigo in enumerate(codigos):
+        try:
+            link = page.query_selector(
+                f"#ContentPlaceHolder_gvwLista_btnResumoProjeto_{indice}"
+            )
+            if not link:
+                print(f"[AVISO] {codigo}: botão 'Visualizar' não encontrado")
+                continue
+
+            link.click(timeout=8000)
+            try:
+                page.wait_for_selector(SEL_MODAL_PAINEL, state="visible", timeout=10000)
+                page.wait_for_function(
+                    "(sel) => { const el = document.querySelector(sel); "
+                    "return el && el.innerText.trim() !== ''; }",
+                    arg=SEL_MODAL_CODIGO,
+                    timeout=10000,
+                )
+            except PWTimeout:
+                print(f"[AVISO] {codigo}: modal de vigência não carregou")
+
+            codigo_modal = normalizar(_texto(page, SEL_MODAL_CODIGO))
+            alvo = por_codigo.get(codigo_modal) or por_codigo.get(normalizar(codigo))
+            if not alvo:
+                print(f"[AVISO] {codigo}: projeto não encontrado na página; ignorando")
+                continue
+            if codigo_modal and codigo_modal != normalizar(codigo):
+                print(f"[INFO] {codigo}: modal abriu {codigo_modal}; gravando no projeto correto")
+
+            inicio = _texto(page, SEL_MODAL_INICIO)
+            fim = _texto(page, SEL_MODAL_FIM)
+            alvo["inicio"] = "" if inicio.startswith("lbl") else inicio
+            alvo["fim"] = "" if fim.startswith("lbl") else fim
+            print(
+                f"[INFO] {alvo.get('id')}: vigência "
+                f"{alvo['inicio'] or '?'} até {alvo['fim'] or '?'}"
+            )
+        except Exception as e:
+            print(f"[AVISO] {codigo}: falha ao ler vigência ({e})")
+        finally:
+            _fechar_modal(page)
+
+
 def detectar_total_paginas(page):
     """Lê 'Mostrando de X até Y de Z registro(s)' e calcula o total de páginas."""
     try:
@@ -279,7 +416,7 @@ def detectar_total_paginas(page):
 
 
 def ir_para_pagina(page, numero):
-    """Navega para a página N clicando no link de paginação."""
+    """Navega para a página N do GridView (com fallback de postback)."""
     try:
         link = page.query_selector(f"a[href*='Page${numero}']")
         if not link:
@@ -287,16 +424,33 @@ def ir_para_pagina(page, numero):
             link = page.query_selector("a[href*='Page$Last']")
             if not link:
                 return False
-        link.click()
+
+        try:
+            link.scroll_into_view_if_needed(timeout=5000)
+        except Exception:
+            pass
+
+        try:
+            link.click(timeout=10000)
+        except Exception as e:
+            # Fallback: dispara o __doPostBack do href diretamente
+            href = link.get_attribute("href") or ""
+            m = re.search(r"__doPostBack\('([^']*)','([^']*)'\)", href)
+            if not m:
+                raise
+            print(f"[AVISO] Clique bloqueado ({e}); disparando postback via JS")
+            page.evaluate("([t, a]) => __doPostBack(t, a)", [m.group(1), m.group(2)])
+
         page.wait_for_load_state("networkidle", timeout=20000)
-        page.wait_for_timeout(800)
+        page.wait_for_timeout(600)
         return True
     except Exception as e:
         print(f"[AVISO] Falha ao ir para página {numero}: {e}")
         return False
 
 
-def coletar_projetos_unidade(page):
+def _coletar_lista_projetos(page):
+    """Percorre todas as páginas da listagem e devolve os projetos (sem modal)."""
     todos = []
 
     print(f"[INFO] Acessando {URL_PROJETOS_UNIDADE}")
@@ -306,9 +460,7 @@ def coletar_projetos_unidade(page):
     # Salvar HTML da primeira página para debug
     (PASTA_DADOS / "projetos_unidade.html").write_text(page.content(), encoding="utf-8")
 
-    # Detectar total de páginas
     total_paginas = detectar_total_paginas(page)
-
     pagina = 1
     while True:
         projetos_pagina = extrair_pagina_projetos(page)
@@ -317,23 +469,70 @@ def coletar_projetos_unidade(page):
 
         if pagina >= total_paginas:
             break
-
         if not ir_para_pagina(page, pagina + 1):
             print("[AVISO] Interrompendo paginação")
             break
         pagina += 1
 
-    # Remover duplicados por id+codigo
+    # Remover duplicados por id+nome
     vistos = set()
     unicos = []
     for p in todos:
         chave = (p.get("id"), p.get("nome"))
         if chave not in vistos:
             vistos.add(chave)
+            p.setdefault("inicio", "")
+            p.setdefault("fim", "")
             unicos.append(p)
 
-    print(f"[OK] Total: {len(unicos)} projetos únicos coletados")
+    print(f"[OK] Lista: {len(unicos)} projetos únicos")
     return unicos
+
+
+def enriquecer_vigencia(page, todos):
+    """Segunda passada: lê a vigência no modal de cada projeto (melhor esforço).
+
+    A lista de projetos já foi coletada antes; se algo falhar aqui, os projetos
+    são preservados e apenas as datas ficam vazias.
+    """
+    if not COLETAR_VIGENCIA or not todos:
+        return
+
+    print(f"[INFO] Lendo vigência de {len(todos)} projeto(s)...")
+    page.goto(URL_PROJETOS_UNIDADE, timeout=30000)
+    page.wait_for_load_state("networkidle", timeout=15000)
+    total_paginas = detectar_total_paginas(page)
+
+    por_id = {str(p.get("id")): p for p in todos if p.get("id")}
+    pagina = 1
+    while pagina <= total_paginas:
+        projetos_pagina = extrair_pagina_projetos(page)
+        coletar_vigencia_pagina(page, projetos_pagina, pagina)
+
+        for lido in projetos_pagina:
+            destino = por_id.get(str(lido.get("id")))
+            if destino is not None:
+                destino["inicio"] = lido.get("inicio", "")
+                destino["fim"] = lido.get("fim", "")
+
+        if pagina >= total_paginas:
+            break
+        if not ir_para_pagina(page, pagina + 1):
+            print("[AVISO] Vigência interrompida; lista de projetos preservada")
+            break
+        pagina += 1
+
+    com_datas = sum(1 for p in todos if p.get("inicio") or p.get("fim"))
+    print(f"[OK] Vigência lida para {com_datas}/{len(todos)} projeto(s)")
+
+
+def coletar_projetos_unidade(page):
+    todos = _coletar_lista_projetos(page)
+    try:
+        enriquecer_vigencia(page, todos)
+    except Exception as e:
+        print(f"[AVISO] Vigência: {e}")
+    return todos
 
 
 def coletar_grupos_pesquisa(page):
