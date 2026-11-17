@@ -9,7 +9,9 @@
     "area": "Biologia Geral",
     "financiamentos": "1",
     "atualizadoEm": "27/08/2026 15:32:17",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "18/06/2026",
+    "fim": "30/07/2027"
   },
   {
     "anoInicio": "2025",
@@ -21,7 +23,9 @@
     "area": "Agronomia",
     "financiamentos": "0",
     "atualizadoEm": "08/06/2026 21:27:44",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "02/08/2025",
+    "fim": "30/12/2026"
   },
   {
     "anoInicio": "2026",
@@ -33,7 +37,9 @@
     "area": "Agronomia",
     "financiamentos": "0",
     "atualizadoEm": "08/06/2026 21:28:37",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/04/2026",
+    "fim": "31/12/2026"
   },
   {
     "anoInicio": "2026",
@@ -45,7 +51,9 @@
     "area": "Ensino",
     "financiamentos": "0",
     "atualizadoEm": "24/06/2026 12:12:20",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2026",
@@ -57,7 +65,9 @@
     "area": "Agronomia",
     "financiamentos": "0",
     "atualizadoEm": "02/09/2026 22:41:51",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2026",
@@ -69,7 +79,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "01/09/2026 22:33:31",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2026",
@@ -81,7 +93,9 @@
     "area": "Letras",
     "financiamentos": "0",
     "atualizadoEm": "04/05/2026 22:28:38",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2026",
@@ -93,7 +107,9 @@
     "area": "Ciência da Computação",
     "financiamentos": "0",
     "atualizadoEm": "11/05/2026 11:25:58",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2026",
+    "fim": "01/07/2027"
   },
   {
     "anoInicio": "2026",
@@ -105,19 +121,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "24/08/2026 14:40:01",
-    "parecer": "Aprovado"
-  },
-  {
-    "anoInicio": "2026",
-    "id": "PJ 9602",
-    "nome": "Estudo Comparativo entre PLA e PET reciclado para impressão 3D através de caracterização mecânica",
-    "coordenador": "FRANCISCO ANDSON MARQUES",
-    "campusLotacao": "Linhares",
-    "campusExecucao": "Linhares",
-    "area": "Engenharia Mecânica",
-    "financiamentos": "0",
-    "atualizadoEm": "28/05/2026 21:43:49",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2026",
@@ -129,7 +135,9 @@
     "area": "Ciência da Computação",
     "financiamentos": "0",
     "atualizadoEm": "10/08/2026 07:16:43",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2026",
@@ -141,7 +149,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "03/08/2026 12:32:50",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2026",
@@ -153,7 +163,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "10/08/2026 07:13:51",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2026",
@@ -165,7 +177,9 @@
     "area": "Outros",
     "financiamentos": "0",
     "atualizadoEm": "04/05/2026 16:44:15",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "25/04/2026",
+    "fim": "24/04/2028"
   },
   {
     "anoInicio": "2026",
@@ -176,8 +190,10 @@
     "campusExecucao": "Linhares",
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
-    "atualizadoEm": "03/09/2026 07:55:51",
-    "parecer": "Aprovado"
+    "atualizadoEm": "13/11/2026 09:58:00",
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2025",
@@ -189,7 +205,9 @@
     "area": "Educação",
     "financiamentos": "2",
     "atualizadoEm": "20/07/2026 10:27:57",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/12/2025",
+    "fim": "31/12/2027"
   },
   {
     "anoInicio": "2026",
@@ -201,7 +219,9 @@
     "area": "Física",
     "financiamentos": "0",
     "atualizadoEm": "07/08/2026 09:36:23",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2026",
+    "fim": "31/08/2027"
   },
   {
     "anoInicio": "2026",
@@ -212,8 +232,10 @@
     "campusExecucao": "Linhares",
     "area": "Educação",
     "financiamentos": "5",
-    "atualizadoEm": "30/06/2026 14:01:34",
-    "parecer": "Salvo"
+    "atualizadoEm": "13/09/2026 20:29:12",
+    "parecer": "Aprovado",
+    "inicio": "01/04/2026",
+    "fim": "01/04/2027"
   },
   {
     "anoInicio": "2026",
@@ -224,8 +246,10 @@
     "campusExecucao": "Aracruz",
     "area": "Química",
     "financiamentos": "0",
-    "atualizadoEm": "13/02/2026 14:42:39",
-    "parecer": "Aprovado"
+    "atualizadoEm": "27/10/2026 21:34:11",
+    "parecer": "Aprovado",
+    "inicio": "11/02/2026",
+    "fim": "31/07/2026"
   },
   {
     "anoInicio": "2025",
@@ -237,7 +261,9 @@
     "area": "Química",
     "financiamentos": "0",
     "atualizadoEm": "05/03/2026 12:26:44",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "25/08/2025",
+    "fim": "25/08/2027"
   },
   {
     "anoInicio": "2025",
@@ -249,7 +275,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "04/08/2026 17:57:07",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/05/2027"
   },
   {
     "anoInicio": "2025",
@@ -261,7 +289,9 @@
     "area": "Letras",
     "financiamentos": "0",
     "atualizadoEm": "05/03/2026 12:29:36",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -273,7 +303,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "31/08/2026 20:41:15",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -285,7 +317,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "02/09/2025 17:05:55",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -297,7 +331,9 @@
     "area": "Ciência da Computação",
     "financiamentos": "0",
     "atualizadoEm": "24/08/2026 11:44:36",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -309,7 +345,9 @@
     "area": "Astronomia",
     "financiamentos": "0",
     "atualizadoEm": "26/02/2026 17:18:10",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -321,7 +359,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "02/09/2025 17:07:26",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -333,7 +373,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "23/05/2026 20:34:20",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -345,7 +387,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "03/09/2025 09:00:41",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -357,7 +401,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "03/09/2025 09:01:02",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -369,7 +415,9 @@
     "area": "Agronomia",
     "financiamentos": "0",
     "atualizadoEm": "02/09/2025 17:11:39",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -381,7 +429,9 @@
     "area": "Educação Física",
     "financiamentos": "0",
     "atualizadoEm": "03/09/2025 09:01:23",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -393,7 +443,9 @@
     "area": "Química",
     "financiamentos": "4",
     "atualizadoEm": "02/09/2025 17:15:45",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/04/2025",
+    "fim": "31/01/2026"
   },
   {
     "anoInicio": "2025",
@@ -405,7 +457,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "31/07/2026 07:52:09",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -417,7 +471,9 @@
     "area": "Física",
     "financiamentos": "0",
     "atualizadoEm": "30/08/2026 12:16:13",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "01/09/2026"
   },
   {
     "anoInicio": "2025",
@@ -429,7 +485,9 @@
     "area": "Geografia",
     "financiamentos": "0",
     "atualizadoEm": "02/09/2025 17:22:51",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "10/03/2025",
+    "fim": "10/03/2026"
   },
   {
     "anoInicio": "2025",
@@ -441,7 +499,9 @@
     "area": "Física",
     "financiamentos": "0",
     "atualizadoEm": "31/08/2026 22:17:37",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2025",
@@ -451,9 +511,11 @@
     "campusLotacao": "Linhares",
     "campusExecucao": "Linhares",
     "area": "Engenharia Mecânica",
-    "financiamentos": "0",
-    "atualizadoEm": "31/08/2026 17:25:07",
-    "parecer": "Aprovado"
+    "financiamentos": "2",
+    "atualizadoEm": "10/09/2026 17:11:33",
+    "parecer": "Aprovado",
+    "inicio": "01/09/2025",
+    "fim": "31/08/2026"
   },
   {
     "anoInicio": "2024",
@@ -465,7 +527,9 @@
     "area": "Química",
     "financiamentos": "0",
     "atualizadoEm": "21/08/2025 09:28:50",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "23/07/2024",
+    "fim": "31/07/2026"
   },
   {
     "anoInicio": "2024",
@@ -477,7 +541,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "31/08/2025 16:28:01",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2024",
+    "fim": "31/08/2025"
   },
   {
     "anoInicio": "2024",
@@ -489,7 +555,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "02/09/2024 07:38:09",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2024",
+    "fim": "31/08/2025"
   },
   {
     "anoInicio": "2024",
@@ -501,7 +569,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "28/08/2025 17:55:33",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2024",
+    "fim": "31/08/2025"
   },
   {
     "anoInicio": "2024",
@@ -513,7 +583,9 @@
     "area": "Ciência da Computação",
     "financiamentos": "0",
     "atualizadoEm": "15/08/2024 15:49:38",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/09/2024",
+    "fim": "31/08/2025"
   },
   {
     "anoInicio": "2024",
@@ -525,7 +597,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "03/05/2026 05:55:51",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2024",
+    "fim": "01/09/2025"
   },
   {
     "anoInicio": "2024",
@@ -537,7 +611,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "21/08/2025 22:03:42",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2024",
+    "fim": "31/08/2025"
   },
   {
     "anoInicio": "2024",
@@ -549,7 +625,9 @@
     "area": "Engenharia de Materiais e Metalúrgica",
     "financiamentos": "0",
     "atualizadoEm": "23/08/2025 19:19:20",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2024",
+    "fim": "31/08/2025"
   },
   {
     "anoInicio": "2024",
@@ -561,7 +639,9 @@
     "area": "Física",
     "financiamentos": "0",
     "atualizadoEm": "01/09/2025 14:30:42",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2024",
+    "fim": "31/08/2025"
   },
   {
     "anoInicio": "2024",
@@ -573,7 +653,9 @@
     "area": "Educação Física",
     "financiamentos": "0",
     "atualizadoEm": "02/09/2024 07:40:08",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2024",
+    "fim": "31/08/2025"
   },
   {
     "anoInicio": "2023",
@@ -585,7 +667,9 @@
     "area": "Engenharia Sanitária",
     "financiamentos": "0",
     "atualizadoEm": "04/09/2024 08:46:33",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/09/2023",
+    "fim": "31/08/2024"
   },
   {
     "anoInicio": "2023",
@@ -597,7 +681,9 @@
     "area": "Letras",
     "financiamentos": "0",
     "atualizadoEm": "19/12/2024 10:25:06",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "03/08/2023",
+    "fim": "02/08/2024"
   },
   {
     "anoInicio": "2023",
@@ -609,7 +695,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "31/08/2026 11:38:31",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/06/2023",
+    "fim": "01/06/2024"
   },
   {
     "anoInicio": "2023",
@@ -621,7 +709,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "04/09/2024 10:57:54",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2023",
+    "fim": "31/08/2024"
   },
   {
     "anoInicio": "2023",
@@ -633,7 +723,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "30/08/2024 16:37:55",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2023",
+    "fim": "31/07/2024"
   },
   {
     "anoInicio": "2023",
@@ -645,7 +737,9 @@
     "area": "Fisiologia",
     "financiamentos": "0",
     "atualizadoEm": "31/08/2023 08:15:09",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2023",
+    "fim": "31/08/2024"
   },
   {
     "anoInicio": "2023",
@@ -657,7 +751,9 @@
     "area": "Astronomia",
     "financiamentos": "0",
     "atualizadoEm": "05/09/2024 20:14:21",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2023",
+    "fim": "31/08/2024"
   },
   {
     "anoInicio": "2023",
@@ -669,7 +765,9 @@
     "area": "Ecologia",
     "financiamentos": "0",
     "atualizadoEm": "27/08/2026 15:34:17",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "27/04/2023",
+    "fim": "31/12/2026"
   },
   {
     "anoInicio": "2023",
@@ -681,7 +779,9 @@
     "area": "Química",
     "financiamentos": "1",
     "atualizadoEm": "13/02/2026 15:14:32",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "27/04/2023",
+    "fim": "26/04/2025"
   },
   {
     "anoInicio": "2023",
@@ -693,7 +793,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "31/08/2023 19:07:50",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "25/03/2023",
+    "fim": "25/03/2025"
   },
   {
     "anoInicio": "2023",
@@ -705,7 +807,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "24/08/2023 15:57:24",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "14/08/2023",
+    "fim": "14/08/2024"
   },
   {
     "anoInicio": "2023",
@@ -717,7 +821,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "2",
     "atualizadoEm": "03/05/2026 05:53:20",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2023",
+    "fim": "20/12/2024"
   },
   {
     "anoInicio": "2023",
@@ -729,7 +835,9 @@
     "area": "Educação Física",
     "financiamentos": "0",
     "atualizadoEm": "02/04/2024 10:44:28",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2023",
+    "fim": "31/08/2024"
   },
   {
     "anoInicio": "2022",
@@ -741,7 +849,9 @@
     "area": "Química",
     "financiamentos": "1",
     "atualizadoEm": "02/05/2023 11:52:29",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/03/2022",
+    "fim": "31/12/2022"
   },
   {
     "anoInicio": "2022",
@@ -753,7 +863,9 @@
     "area": "Ciência da Computação",
     "financiamentos": "0",
     "atualizadoEm": "05/09/2022 10:46:54",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2022",
+    "fim": "31/08/2023"
   },
   {
     "anoInicio": "2022",
@@ -765,7 +877,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "17/08/2024 15:31:01",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/08/2022",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2022",
@@ -777,7 +891,9 @@
     "area": "Educação",
     "financiamentos": "0",
     "atualizadoEm": "25/04/2023 10:28:38",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2022",
+    "fim": "31/08/2023"
   },
   {
     "anoInicio": "2022",
@@ -789,7 +905,9 @@
     "area": "Engenharia de Produção",
     "financiamentos": "0",
     "atualizadoEm": "04/05/2024 12:15:53",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2022",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2022",
@@ -801,7 +919,9 @@
     "area": "Economia",
     "financiamentos": "1",
     "atualizadoEm": "14/09/2023 19:06:49",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2022",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2022",
@@ -813,7 +933,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "05/09/2022 09:47:06",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2022",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2022",
@@ -825,7 +947,9 @@
     "area": "Engenharia Sanitária",
     "financiamentos": "0",
     "atualizadoEm": "30/08/2023 15:48:48",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2022",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2022",
@@ -837,7 +961,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "30/08/2022 16:12:26",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/08/2022",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2022",
@@ -849,7 +975,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "15/08/2023 15:26:49",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2022",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2022",
@@ -861,7 +989,9 @@
     "area": "Engenharia Sanitária",
     "financiamentos": "0",
     "atualizadoEm": "31/08/2022 08:46:13",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2022",
+    "fim": "31/08/2023"
   },
   {
     "anoInicio": "2022",
@@ -873,7 +1003,9 @@
     "area": "Educação Física",
     "financiamentos": "0",
     "atualizadoEm": "24/04/2023 14:01:19",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/09/2022",
+    "fim": "31/08/2023"
   },
   {
     "anoInicio": "2022",
@@ -885,7 +1017,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "1",
     "atualizadoEm": "03/05/2026 05:53:04",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/03/2022",
+    "fim": "31/08/2023"
   },
   {
     "anoInicio": "2021",
@@ -897,7 +1031,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "1",
     "atualizadoEm": "24/10/2024 16:25:52",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "07/12/2021",
+    "fim": "07/12/2023"
   },
   {
     "anoInicio": "2021",
@@ -909,7 +1045,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "01/09/2022 20:17:44",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "19/07/2021",
+    "fim": "30/07/2023"
   },
   {
     "anoInicio": "2021",
@@ -921,7 +1059,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "18/08/2023 15:35:31",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2021",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2021",
@@ -933,7 +1073,9 @@
     "area": "Educação Física",
     "financiamentos": "0",
     "atualizadoEm": "31/10/2023 16:56:45",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/11/2021",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2021",
@@ -945,7 +1087,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "06/08/2024 15:21:02",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/06/2021",
+    "fim": "29/09/2023"
   },
   {
     "anoInicio": "2021",
@@ -957,7 +1101,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "01/03/2026 10:10:35",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/06/2021",
+    "fim": "29/12/2023"
   },
   {
     "anoInicio": "2021",
@@ -969,7 +1115,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "31/08/2023 15:26:49",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/07/2021",
+    "fim": "01/07/2023"
   },
   {
     "anoInicio": "2021",
@@ -981,7 +1129,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "12/04/2021 16:10:30",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2021",
+    "fim": "31/07/2022"
   },
   {
     "anoInicio": "2021",
@@ -993,7 +1143,9 @@
     "area": "Educação Física",
     "financiamentos": "0",
     "atualizadoEm": "23/08/2022 11:18:44",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2021",
+    "fim": "31/07/2022"
   },
   {
     "anoInicio": "2020",
@@ -1005,7 +1157,9 @@
     "area": "Interdisciplinar",
     "financiamentos": "0",
     "atualizadoEm": "05/05/2023 10:11:44",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "09/11/2020",
+    "fim": "23/04/2021"
   },
   {
     "anoInicio": "2020",
@@ -1017,7 +1171,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "25/07/2023 15:54:18",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/07/2020",
+    "fim": "31/03/2021"
   },
   {
     "anoInicio": "2022",
@@ -1029,7 +1185,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "25/04/2022 13:22:05",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2022",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2022",
@@ -1041,7 +1199,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "25/04/2022 13:20:01",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2022",
+    "fim": "31/07/2023"
   },
   {
     "anoInicio": "2020",
@@ -1053,7 +1213,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "1",
     "atualizadoEm": "15/12/2021 09:05:49",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2020",
+    "fim": "31/07/2021"
   },
   {
     "anoInicio": "2020",
@@ -1065,7 +1227,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "03/04/2020 14:53:54",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2020",
+    "fim": "31/07/2021"
   },
   {
     "anoInicio": "2020",
@@ -1077,7 +1241,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "03/04/2020 14:56:02",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2020",
+    "fim": "31/07/2021"
   },
   {
     "anoInicio": "2020",
@@ -1089,7 +1255,9 @@
     "area": "Química",
     "financiamentos": "0",
     "atualizadoEm": "08/04/2021 12:24:02",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "02/03/2020",
+    "fim": "31/12/2020"
   },
   {
     "anoInicio": "2020",
@@ -1101,7 +1269,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "25/04/2022 13:53:36",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "02/03/2020",
+    "fim": "04/03/2022"
   },
   {
     "anoInicio": "2019",
@@ -1113,7 +1283,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "1",
     "atualizadoEm": "20/07/2021 09:47:32",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2019",
+    "fim": "31/07/2020"
   },
   {
     "anoInicio": "2019",
@@ -1125,7 +1297,9 @@
     "area": "Ciência e Tecnologia de Alimentos",
     "financiamentos": "0",
     "atualizadoEm": "26/04/2023 12:57:07",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2019",
+    "fim": "30/07/2020"
   },
   {
     "anoInicio": "2019",
@@ -1137,7 +1311,9 @@
     "area": "Engenharia Sanitária",
     "financiamentos": "0",
     "atualizadoEm": "30/07/2021 10:06:03",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "08/07/2019",
+    "fim": "13/07/2020"
   },
   {
     "anoInicio": "2019",
@@ -1149,7 +1325,9 @@
     "area": "Química",
     "financiamentos": "0",
     "atualizadoEm": "16/01/2024 12:54:43",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/02/2019",
+    "fim": "01/12/2019"
   },
   {
     "anoInicio": "2018",
@@ -1161,7 +1339,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "20/07/2021 09:48:11",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "31/07/2018",
+    "fim": "31/07/2019"
   },
   {
     "anoInicio": "2018",
@@ -1173,7 +1353,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "17/09/2018 15:35:46",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/08/2018",
+    "fim": "01/08/2019"
   },
   {
     "anoInicio": "2018",
@@ -1185,7 +1367,9 @@
     "area": "Engenharia Mecânica",
     "financiamentos": "0",
     "atualizadoEm": "26/08/2019 11:48:17",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/08/2018",
+    "fim": "31/07/2019"
   },
   {
     "anoInicio": "2018",
@@ -1197,7 +1381,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "12/03/2019 13:00:47",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/08/2018",
+    "fim": "01/08/2019"
   },
   {
     "anoInicio": "2018",
@@ -1209,7 +1395,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "0",
     "atualizadoEm": "20/07/2021 09:44:14",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2018",
+    "fim": "31/07/2019"
   },
   {
     "anoInicio": "2016",
@@ -1221,7 +1409,9 @@
     "area": "Engenharia Elétrica",
     "financiamentos": "1",
     "atualizadoEm": "03/04/2020 16:23:40",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/11/2016",
+    "fim": "01/11/2019"
   },
   {
     "anoInicio": "2017",
@@ -1233,7 +1423,9 @@
     "area": "Economia",
     "financiamentos": "0",
     "atualizadoEm": "13/08/2018 16:07:03",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/08/2017",
+    "fim": "31/07/2018"
   },
   {
     "anoInicio": "2017",
@@ -1245,7 +1437,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "14/08/2018 11:34:08",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/08/2017",
+    "fim": "31/07/2018"
   },
   {
     "anoInicio": "2017",
@@ -1257,7 +1451,9 @@
     "area": "Matemática",
     "financiamentos": "0",
     "atualizadoEm": "13/08/2018 16:05:05",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "01/08/2017",
+    "fim": "31/07/2018"
   },
   {
     "anoInicio": "2017",
@@ -1269,7 +1465,9 @@
     "area": "Engenharia Sanitária",
     "financiamentos": "0",
     "atualizadoEm": "07/08/2018 15:22:25",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2017",
+    "fim": "31/07/2018"
   },
   {
     "anoInicio": "2017",
@@ -1281,7 +1479,9 @@
     "area": "Educação Física",
     "financiamentos": "0",
     "atualizadoEm": "03/09/2019 09:54:45",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2017",
+    "fim": "31/07/2018"
   },
   {
     "anoInicio": "2017",
@@ -1293,7 +1493,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "02/08/2018 14:23:57",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2017",
+    "fim": "31/07/2018"
   },
   {
     "anoInicio": "2015",
@@ -1305,7 +1507,9 @@
     "area": "Administração",
     "financiamentos": "1",
     "atualizadoEm": "16/08/2017 11:14:48",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "30/10/2015",
+    "fim": "30/10/2017"
   },
   {
     "anoInicio": "2017",
@@ -1317,7 +1521,9 @@
     "area": "Engenharia Sanitária",
     "financiamentos": "0",
     "atualizadoEm": "26/04/2023 12:58:36",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2017",
+    "fim": "31/07/2019"
   },
   {
     "anoInicio": "2014",
@@ -1329,7 +1535,9 @@
     "area": "Astronomia",
     "financiamentos": "0",
     "atualizadoEm": "25/04/2022 13:18:32",
-    "parecer": "Recusado"
+    "parecer": "Recusado",
+    "inicio": "31/10/2014",
+    "fim": "31/10/2016"
   },
   {
     "anoInicio": "2016",
@@ -1341,7 +1549,9 @@
     "area": "Administração",
     "financiamentos": "0",
     "atualizadoEm": "01/08/2017 09:41:24",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/08/2016",
+    "fim": "31/07/2017"
   },
   {
     "anoInicio": "2015",
@@ -1353,7 +1563,9 @@
     "area": "Letras",
     "financiamentos": "0",
     "atualizadoEm": "29/06/2015 14:31:40",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "31/07/2015",
+    "fim": "01/08/2016"
   },
   {
     "anoInicio": "2015",
@@ -1365,7 +1577,9 @@
     "area": "Letras",
     "financiamentos": "0",
     "atualizadoEm": "23/04/2020 20:41:13",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "31/07/2015",
+    "fim": "01/08/2016"
   },
   {
     "anoInicio": "2015",
@@ -1377,7 +1591,9 @@
     "area": "Geografia",
     "financiamentos": "0",
     "atualizadoEm": "18/08/2015 13:10:38",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/07/2015",
+    "fim": "01/07/2016"
   },
   {
     "anoInicio": "2013",
@@ -1389,7 +1605,9 @@
     "area": "Educação",
     "financiamentos": "0",
     "atualizadoEm": "05/10/2014 00:21:51",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/10/2013",
+    "fim": "01/06/2015"
   },
   {
     "anoInicio": "2014",
@@ -1401,7 +1619,9 @@
     "area": "Matemática",
     "financiamentos": "0",
     "atualizadoEm": "02/10/2014 18:08:43",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "04/08/2014",
+    "fim": "15/01/2015"
   },
   {
     "anoInicio": "2011",
@@ -1413,7 +1633,9 @@
     "area": "Arquitetura e Urbanismo",
     "financiamentos": "0",
     "atualizadoEm": "26/04/2013 16:11:14",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/02/2011",
+    "fim": "31/01/2012"
   },
   {
     "anoInicio": "2011",
@@ -1425,7 +1647,9 @@
     "area": "Arquitetura e Urbanismo",
     "financiamentos": "0",
     "atualizadoEm": "26/04/2013 16:05:04",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/02/2011",
+    "fim": "31/01/2012"
   },
   {
     "anoInicio": "2011",
@@ -1437,7 +1661,9 @@
     "area": "Planejamento Urbano e Regional",
     "financiamentos": "0",
     "atualizadoEm": "25/07/2023 16:02:18",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/02/2011",
+    "fim": "31/01/2012"
   },
   {
     "anoInicio": "2011",
@@ -1449,6 +1675,8 @@
     "area": "Biologia Geral",
     "financiamentos": "0",
     "atualizadoEm": "26/04/2023 12:57:34",
-    "parecer": "Aprovado"
+    "parecer": "Aprovado",
+    "inicio": "01/02/2011",
+    "fim": "31/01/2012"
   }
 ]
