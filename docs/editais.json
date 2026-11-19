@@ -28,6 +28,15 @@
   },
   {
     "agencia": "CNPq",
+    "titulo": "Chamada CNPq/MIR Nº 23/2026 - Programa Lélia Gonzalez de fomento a pesquisas sobre desigualdades étnico-raciais na ciência, na educação e na sociedade brasileiras",
+    "prazoFim": "2026-12-08",
+    "prazoTexto": "2026-12-08",
+    "situacao": "Aberto",
+    "url": "https://www.gov.br/cnpq/pt-br/chamadas/todas-as-chamadas/chamadas-2026/chamada-no-23-2026/chamada-publica-cnpq-N-23-2026",
+    "fonte": "https://www.gov.br/cnpq/pt-br/chamadas/abertas-para-submissao"
+  },
+  {
+    "agencia": "CNPq",
     "titulo": "Chamada Pública CNPq/MCTI N° 36/2026 - Apoio a cursos de curta duração em biodiversidade, no âmbito do Centro Franco-Brasileiro de Biodiversidade Amazônica (CFBBA)",
     "prazoFim": "2026-12-08",
     "prazoTexto": "2026-12-08",
@@ -276,6 +285,15 @@
     "prazoTexto": "",
     "situacao": "Aberto",
     "url": "https://www.gov.br/capes/pt-br/acesso-a-informacao/acoes-e-programas/educacao-basica/programa-de-apoio-a-eventos-no-pais-para-a-educacao-basica-paep-eb",
+    "fonte": "https://www.gov.br/capes/pt-br/assuntos/editais-e-resultados-capes"
+  },
+  {
+    "agencia": "CAPES",
+    "titulo": "Chamada Pública para Envio de Proposta de Curso Novo - Edital nº 20/2026 - Alteração",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://www.gov.br/capes/pt-br/centrais-de-conteudo/editais/edital_2844920.pdf/@@display-file/file",
     "fonte": "https://www.gov.br/capes/pt-br/assuntos/editais-e-resultados-capes"
   },
   {
