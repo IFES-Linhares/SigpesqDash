@@ -1,6 +1,24 @@
 [
   {
     "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 25/2026 - CIÊNCIA ABERTA CAPIXABA (PRELIMINAR)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Resultados/edital-fapes-25-2026-ciencia-aberta-capixaba-resultado-preliminar-selecao.pdf?v=1795454943558",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 24/2026 - PRIMEIROS PROJETOS DE PESQUISA - ESPÍRITO SANTO (PPP-ES) (PRELIMINAR)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Resultados/edital-24-2026-primeiros-projetos-de-pesquisa-resultado-preliminar-da-selecao.pdf?v=1795454929521",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
     "titulo": "EDITAL FAPES Nº 08/2026 – NOVA ECONOMIA CAPIXABA (PRELIMINAR)",
     "prazoFim": "",
     "prazoTexto": "",
@@ -15,15 +33,6 @@
     "prazoTexto": "",
     "situacao": "Aberto",
     "url": "https://fapes.es.gov.br/media/Editais/edital_28_25_publicacao_artigo_tecnico_cientifico_4a_chamada_resultado_preliminar.pdf?v=1794513617106",
-    "fonte": "https://fapes.es.gov.br/"
-  },
-  {
-    "agencia": "FAPES",
-    "titulo": "EDITAL FAPES Nº 25/2026 - CIÊNCIA ABERTA CAPIXABA (HABILITAÇÃO)",
-    "prazoFim": "",
-    "prazoTexto": "",
-    "situacao": "Aberto",
-    "url": "https://fapes.es.gov.br/media/Editais/edital_fapes_25_2026_-_ciencia_aberta_capixaba_resultado_final_habilitacao.pdf?v=1794513462208",
     "fonte": "https://fapes.es.gov.br/"
   },
   {
@@ -172,47 +181,11 @@
   },
   {
     "agencia": "FAPES",
-    "titulo": "EDITAL FAPES Nº 24/2026 - PRIMEIROS PROJETOS DE PESQUISA (HABILITAÇÃO)",
-    "prazoFim": "",
-    "prazoTexto": "",
-    "situacao": "Aberto",
-    "url": "https://fapes.es.gov.br/media/Resultados/edital_fapes_24_2026_ppp-es_resultado_final_habilitacao.pdf",
-    "fonte": "https://fapes.es.gov.br/"
-  },
-  {
-    "agencia": "FAPES",
-    "titulo": "EDITAL FAPES Nº 26/2026 – PROCAP MESTRADO",
-    "prazoFim": "2026-11-16",
-    "prazoTexto": "16/11/2026",
-    "situacao": "Aberto",
-    "url": "https://fapes.es.gov.br/media/Editais/procap-2027-mestrado.pdf",
-    "fonte": "https://fapes.es.gov.br/"
-  },
-  {
-    "agencia": "FAPES",
-    "titulo": "EDITAL FAPES Nº 27/2026 – PROCAP DOUTORADO",
-    "prazoFim": "",
-    "prazoTexto": "",
-    "situacao": "Aberto",
-    "url": "https://fapes.es.gov.br/media/Editais/procap-2027-doutorado.pdf",
-    "fonte": "https://fapes.es.gov.br/"
-  },
-  {
-    "agencia": "FAPES",
     "titulo": "CHAMADA TRANSNACIONAL CONJUNTA FOREST 2026 (FOREST PATHWAYS)",
     "prazoFim": "2026-12-02",
     "prazoTexto": "02/12/2026",
     "situacao": "Aberto",
     "url": "https://fapes.es.gov.br/media/Editais/diretrizes-forest-pathways-2026.pdf",
-    "fonte": "https://fapes.es.gov.br/"
-  },
-  {
-    "agencia": "FAPES",
-    "titulo": "CHAMADA TRANSNACIONAL CONJUNTA DA PARCERIA DE ECONOMIA AZUL SUSTENTAVEL (SBEP) 2026",
-    "prazoFim": "2026-11-16",
-    "prazoTexto": "16/11/2026",
-    "situacao": "Aberto",
-    "url": "https://fapes.es.gov.br/media/Portif%C3%B3lios/diretrizes-da-fapes-chamada-sbep-2026.pdf",
     "fonte": "https://fapes.es.gov.br/"
   },
   {
