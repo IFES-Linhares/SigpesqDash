@@ -1,6 +1,24 @@
 [
   {
     "agencia": "FAPES",
+    "titulo": "EDITAL FAPES Nº 28/2025 - PUBLICAÇÃO DE ARTIGOS TÉCNICO-CIENTÍFICOS (FINAL - 4ª CHAMADA)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/edital_28_25_publicacao_artigo_tecnico_cientifico_4a_chamada_resultado_final.pdf?v=1795782466304",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
+    "titulo": "EDITAL FAPES N° 25/2025 - PARTICIPAÇÃO DE EQUIPES DE ESTUDANTES EM MOSTRAS E COMPETIÇÕES TÉCNICO-CIENTÍFICAS (FINAL - 3ª CHAMADA)",
+    "prazoFim": "",
+    "prazoTexto": "",
+    "situacao": "Aberto",
+    "url": "https://fapes.es.gov.br/media/Editais/edital_fapes_25_2025_participacao_coletiva-3a_ch_-_resultado_final.pdf?v=1795782459881",
+    "fonte": "https://fapes.es.gov.br/"
+  },
+  {
+    "agencia": "FAPES",
     "titulo": "EDITAL FAPES Nº 25/2026 - CIÊNCIA ABERTA CAPIXABA (PRELIMINAR)",
     "prazoFim": "",
     "prazoTexto": "",
@@ -24,15 +42,6 @@
     "prazoTexto": "",
     "situacao": "Aberto",
     "url": "https://fapes.es.gov.br/media/Resultados/edital-fapes-n-08-2026-nova-economia-capixaba-resultado-preliminar-ciclo-abril-2026-contratacao.pdf?v=1794597805617",
-    "fonte": "https://fapes.es.gov.br/"
-  },
-  {
-    "agencia": "FAPES",
-    "titulo": "EDITAL FAPES Nº 28/2025 - PUBLICAÇÃO DE ARTIGOS TÉCNICO-CIENTÍFICOS (PRELIMINAR - 4ª CHAMADA)",
-    "prazoFim": "",
-    "prazoTexto": "",
-    "situacao": "Aberto",
-    "url": "https://fapes.es.gov.br/media/Editais/edital_28_25_publicacao_artigo_tecnico_cientifico_4a_chamada_resultado_preliminar.pdf?v=1794513617106",
     "fonte": "https://fapes.es.gov.br/"
   },
   {
